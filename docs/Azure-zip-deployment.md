@@ -1,12 +1,16 @@
+<div id="top"></div>
+
 # Azure SDK provisioning 
 
 ## Zip deployment using Azure CLI 
+<p align="left"><a href="#top">Back to Top</a></p>
 
 With Zip deployment, you can create a .zip package of your function’s files and then publish it directly to Azure by using Azure CLI or Powershell or the zipdeploy REST API (available to the endpoint https://<app_name&gt;.scm.azurewebsites.net/api/zipdeploy).
  
 The following steps explains about deploying via Azure CLI.
 
 ## Setup Instructions
+<p align="left"><a href="#top">Back to Top</a></p>
 
 This document outlines the steps to configure and deploy Python Azure functions with .zip file archives,
 
@@ -37,7 +41,8 @@ This document outlines the steps to configure and deploy Python Azure functions 
     + [Step 3: Package the code base](#step-3-package-the-code-base)
     + [Step 4: Publish the function on Azure using the ZIP package](#step-4-publish-the-function-on-azure-using-the-zip-package)
 
-##  Prerequisite 
+##  Prerequisite
+<p align="left"><a href="#top">Back to Top</a></p>
 
 1. Install Azure CLI using the steps mentioned in https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
 
@@ -64,6 +69,7 @@ This document outlines the steps to configure and deploy Python Azure functions 
 [Config files Setup Reference](config-setup.md)
 
 ##  Create supporting Azure resources for your function 
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Create supporting Azure resources for your function
 Before you can deploy your function code to Azure, you need to create three resources:
@@ -73,6 +79,7 @@ Before you can deploy your function code to Azure, you need to create three reso
 - A _function app_, which provides the environment for executing your function code. A function app maps to your local function project and lets you group functions as a logical unit for easier management, deployment, and sharing of resources.
 
 ###  Step 1: Sign in to Azure 
+<p align="left"><a href="#top">Back to Top</a></p>
 
 If you don't have an Azure subscription, create an Azure free account before you begin.
 
@@ -92,6 +99,7 @@ az account set -s $subscription
 ```
 
 ###  Step 2: Variable declaration 
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Declare variables like, 
 - the Azure region where to deploy the function, 
@@ -139,6 +147,7 @@ functionAppName="ds2testfunction"
 
 
 ###  Step 3: Create a Resource group 
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Create a resource group in the region if it doesn't exists
 
@@ -150,6 +159,7 @@ az group exists -g  $resourceGroupName || az group create \
 ```
 
 ###  Step 4: Create an Azure storage account in the resource group 
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Create a general-purpose storage account in your resource group and region
 
@@ -190,6 +200,7 @@ az storage blob upload-batch \
 ```
 
 ###  Step 5: Create a serverless python function app in the resource group 
+<p align="left"><a href="#top">Back to Top</a></p>
 
 ```bash
 az functionapp create \
@@ -204,6 +215,7 @@ az functionapp create \
 ```
 
 ###  Step 6: Update the function app's settings to connect to the storage accounts 
+<p align="left"><a href="#top">Back to Top</a></p>
 
 ####  Step 6.1: Configure function app settings to connect to the storage account that receives input data
 
@@ -251,6 +263,7 @@ az functionapp create \
 
 ##  Create an Azure Cosmos Core (SQL) API serverless account, database and container using Azure CLI 
 ###  Step 1: Declare Variables 
+<p align="left"><a href="#top">Back to Top</a></p>
 
 ```bash
 cosmosdbAccountName="ds2testdb"
@@ -259,6 +272,7 @@ cosmosContainerName="ds2cont"
 partitionKey="/id"
 ```
 ###  Step 2: Create a new Azure Cosmos DB database account 
+<p align="left"><a href="#top">Back to Top</a></p>
 
 ```bash
 az cosmosdb create \
@@ -270,6 +284,7 @@ az cosmosdb create \
 ```
 
 ###  Step 3: Create an SQL database under an Azure Cosmos DB account 
+<p align="left"><a href="#top">Back to Top</a></p>
 
 ```bash
 az cosmosdb sql database create \
@@ -279,6 +294,7 @@ az cosmosdb sql database create \
 ```
 
 ###  Step 4: Create an SQL container under an Azure Cosmos DB SQL database 
+<p align="left"><a href="#top">Back to Top</a></p>
 
 ```bash
 az cosmosdb sql container create \
@@ -290,6 +306,7 @@ az cosmosdb sql container create \
 ```
 
 ###  Step 5: Update the function app's settings to connect to the Azure Cosmos DB 
+<p align="left"><a href="#top">Back to Top</a></p>
 
 ####  Step 5.1: Get the Azure Cosmos DB Connection string 
 
@@ -314,10 +331,12 @@ az functionapp config appsettings set \
 
 
 ##  Package and Publish the code base
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Refer [Azure-Functions -> Python -> Folder structure](https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-python?tabs=asgi%2Cazurecli-linux%2Capplication-level#folder-structure)  for the recommended folder structure for a Python Functions project.
 
 ###  Step 1: GIT Clone the Repo
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Ignore the following steps if the repo is already clonned.
 
@@ -340,6 +359,7 @@ Ignore the following steps if the repo is already clonned.
     ```
 
 ###  Step 2: Create function.json in cloud_modules_azure
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Create/Update `cloud_modules_azure/function.json` with the below input and output bindings.
 
@@ -372,6 +392,7 @@ cat << EOF > cloud_modules_azure/function.json
 EOF
 ```
 ###  Step 3: Package the code base
+<p align="left"><a href="#top">Back to Top</a></p>
 
 1. Declare variable
 
@@ -419,9 +440,11 @@ EOF
          3484  04-26-2022 20:54   aggregation_modules/provision_parser.py
     ---------                     -------
         39884                     15 files
-```
+    ```
 
 ###  Step 4: Publish the function on Azure using the ZIP package 
+
+<p align="left"><a href="#top">Back to Top</a></p>
 
 ```bash
 echo "Publishing zip file[$sourceZipPath] to function App[$functionAppName] in resource[$resourceGroupName]"
@@ -436,6 +459,7 @@ az functionapp deployment source config-zip \
 ```
 
 # Reference 
+<p align="left"><a href="#top">Back to Top</a></p>
 
 - [Azure - App Service pricing](https://azure.microsoft.com/en-in/pricing/details/app-service/linux)
 - [Zip deployment for Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/deployment-zip-push)

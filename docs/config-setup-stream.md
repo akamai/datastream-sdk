@@ -1,3 +1,5 @@
+<div id="top"></div>
+
 The following document details about, 
 
 + [How to pull Stream ID Configs?](#how-to-pull-stream-id-configs)
@@ -7,6 +9,7 @@ The following document details about,
 # How to pull Stream ID Configs?
 
 ## Summary
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Use the following command to get the respective stream id details and save it to `stream.json`,
 
@@ -47,10 +50,11 @@ Briefly,
 4. This stream ID file will be copied to `configs/` directory
 
 ## API Examples
+<p align="left"><a href="#top">Back to Top</a></p>
 
 <table>
     <thead>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th>
             Reference > <a href="https://techdocs.akamai.com/datastream2/v2/reference/api">DataStream 2 API v2</a>
         </th>
@@ -60,8 +64,8 @@ Briefly,
     </tr>
     </thead>
     <tbody>
-    <tr align="left" style="vertical-align:top">
-        <td style="vertical-align:top">
+    <tr align="left" valign="top">
+        <td valign="top">
             <a href="https://techdocs.akamai.com/datastream2/v2/reference/get-dataset-fields">List data set fields
 </a>
         </td>
@@ -71,8 +75,8 @@ Briefly,
             </code>
         </td>
     </tr>
-    <tr align="left" style="vertical-align:top">
-        <td style="vertical-align:top">
+    <tr align="left" valign="top">
+        <td valign="top">
             <a href="https://techdocs.akamai.com/datastream2/v2/reference/get-streams">List all streams</a>
         </td>
         <td>
@@ -81,8 +85,8 @@ Briefly,
             </code>
         </td>
     </tr>
-    <tr align="left" style="vertical-align:top">
-        <td style="vertical-align:top">
+    <tr align="left" valign="top">
+        <td valign="top">
             <a href="https://developer.akamai.com/api/core_features/datastream2_config/v1.html#getstream">Get particular stream details</a>
         </td>
         <td>
@@ -96,6 +100,7 @@ Briefly,
 </table>
 
 ## References
+<p align="left"><a href="#top">Back to Top</a></p>
 
 - [Akamai Developer Tools > Create authentication credentials](https://techdocs.akamai.com/developer/docs/set-up-authentication-credentials)
 - [Akamai Developer Tools > HTTPie](https://techdocs.akamai.com/developer/docs/httpie-make-api-calls)

@@ -1,3 +1,5 @@
+<div id="top"></div>
+
 # DS2 Dashboard
 
 ## Table of Contents
@@ -21,6 +23,7 @@
 * [How to setup in Azure](#how-to-setup-in-azure)
 
 ## About The Project
+<p align="left"><a href="#top">Back to Top</a></p>
 
 To empower DS2 customers and create a value to the data delivered to customer object store(S3), business value driven SDK/Package is provided to customer to run on a serverless function (Lambda, Azure functions) and derive metrics to various destination like cloudwatch, SNS, DyanoDB, CosmosDB etc..
 
@@ -32,6 +35,7 @@ Built With
 
 
 ##  Features 
+<p align="left"><a href="#top">Back to Top</a></p>
 
 1. Derive metrics from DS2 Logs uploaded to AWS S3 or Azure blob Storage
 2. Supportability DS2 formats
@@ -39,9 +43,11 @@ Built With
    - STRUCTURED
 
 ## Input
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Reads Structured(CSV) or JSON format input files produced from DataStream 2.
 ## Sample Output
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Generates the following aggregated Output of the selected fields per file
 
@@ -88,6 +94,7 @@ Generates the following aggregated Output of the selected fields per file
 ```
 
 ## How to clone the GIT repo
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Clone the repo,
 
@@ -98,24 +105,25 @@ git clone <repo url>
 Reference - https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-clone
 
 ## Code Structure
+<p align="left"><a href="#top">Back to Top</a></p>
 
 <table>
 <thead>
-<tr align="left" style="vertical-align:top">
+<tr align="left" valign="top">
     <th>File/Module</th>
     <th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr align="left" style="vertical-align:top">
+<tr align="left" valign="top">
     <th><i>run_aggregation.py</i></th>
     <td>Main module that is invoked to aggregate of the input data file </td>
 </tr>
-<tr align="left" style="vertical-align:top">
+<tr align="left" valign="top">
     <th><i>/aggregation_modules</i></th>
     <td>Modules for data aggregation</td>
 </tr>
-<tr align="left" style="vertical-align:top">
+<tr align="left" valign="top">
     <th><i>/cloud_modules_*</i></th>
     <td>
     Utilities to interact with respective cloud services. Say,
@@ -125,15 +133,15 @@ Reference - https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-
     </ul>
     </td>
 </tr>
-<tr align="left" style="vertical-align:top">
+<tr align="left" valign="top">
     <th><i>/configs</i></th>
     <td>contains sample configuration files</td>
 </tr>
-<tr align="left" style="vertical-align:top">
+<tr align="left" valign="top">
     <th><i>/frontend_modules/provision_ui</i></th>
     <td> UI framework using Django that helps to create <code>provision.json</code> file containing the list of selected metrics for aggregation.  </td>
 </tr>
-<tr align="left" style="vertical-align:top">
+<tr align="left" valign="top">
     <th><i>/tools</i></th>
     <td>Contains standalone tools that can be used to setup other services on cloud that helps in analysing Datastream data. <br> Example, 
     <ul>
@@ -153,6 +161,7 @@ python -m pydoc -b .
 ```
 
 ## Configuration Files 
+<p align="left"><a href="#top">Back to Top</a></p>
 
 The following are the details on the list of input configuration files used by this package
 
@@ -183,23 +192,23 @@ The following are the details on the list of input configuration files used by t
 
     <table>
     <tbody>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
     <th><i>field id</i></th>
     <td>The field id (say, <code>"2003"</code>) corresponds to the the <code>datasetFieldId</code> in stream.json file. </td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
     <th><i>"name"</i></th>
     <td></td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
     <th><i>"dtype"</i></th>
     <td>data type of the field</td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
     <th><i>"cname"</i></th>
     <td>field description </td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
     <th><i>"agg"</i></th>
     <td>
         <ul>
@@ -209,49 +218,47 @@ The following are the details on the list of input configuration files used by t
         <li> Following are the currently supported functions,
             <table>
                 <tbody>
-                    <tr align="left" style="vertical-align:top">
+                    <tr align="left" valign="top">
                         <th> <i> min </i> </th>
                         <td> Return the minimum of the values over the requested axis. </td>
                     </tr>
-                    <tr align="left" style="vertical-align:top">
+                    <tr align="left" valign="top">
                         <th> <i> max </i> </th>
                         <td> Return the maximum of the values over the requested axis. </td>
                     </tr>
-                    <tr align="left" style="vertical-align:top">
+                    <tr align="left" valign="top">
                         <th> <i> sum </i> </th>
                         <td> Return the sum of the values over the requested axis. </td>
                     </tr>
-                    <tr align="left" style="vertical-align:top">
+                    <tr align="left" valign="top">
                         <th> <i> count </i> </th>
                         <td> Count non-NA cells for each column or row. </td>
                     </tr>
-                    <tr align="left" style="vertical-align:top">
+                    <tr align="left" valign="top">
                         <th> <i> mean </i> </th>
                         <td> Return the mean of the values over the requested axis. </td>
                     </tr>
-                    <tr align="left" style="vertical-align:top">
+                    <tr align="left" valign="top">
                         <th> <i> median </i> </th>
                         <td> Return the median of the values over the requested axis. </td>
                     </tr>
-                    <tr align="left" style="vertical-align:top">
+                    <tr align="left" valign="top">
                         <th> <i>var </i> </th>
                         <td> Return unbiased variance over requested axis. </td>
                     </tr>
-                    <tr align="left" style="vertical-align:top">
+                    <tr align="left" valign="top">
                         <th> <i> any </i> </th>
                         <td> Returns False unless there is at least one element within a series or along a Dataframe axis that is True or equivalent (e.g. non-zero or non-empty) </td>
                     </tr>
-                    <tr align="left" style="vertical-align:top">
+                    <tr align="left" valign="top">
                         <th> <i> unique_counts </i> </th>
-                        <td> Returns json containing counts of unique rows in the DataFrame.
+                        <td> Returns json containing counts of unique rows in the DataFrame.</br>
                         Example for column <code>country</code> it returns,
-                        <code>
                         <pre>
     "country": {
       "US": 42
     },
                         </pre>
-                        </code>
                         </td>
                     </tr>
                 </tbody>
@@ -291,15 +298,15 @@ The following are the details on the list of input configuration files used by t
 2. This file contains the following details,
 
     <table>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th><i>function name</i></th>
         <td> unique name for the function</td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th><i>"description"</i></th>
         <td> Short description of this function</td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th><i>"required-fields"</i></th>
         <td>dataset field names (in lowercase) from <code>all_datastream2_fields.json</code> that are required to derive this function.</td>
     </tr>
@@ -311,7 +318,7 @@ The following are the details on the list of input configuration files used by t
 
     <table>
         <thead>
-            <tr align="left" style="vertical-align:top">
+            <tr align="left" valign="top">
                 <th>custom function</th>
                 <th>Required DS2 fields</th>
                 <th>Recommended Memory</th>
@@ -319,88 +326,75 @@ The following are the details on the list of input configuration files used by t
             </tr>
         </thead>
         <tbody>
-            <tr align="left" style="vertical-align:top">
+            <tr align="left" valign="top">
                 <th><i> get_total_hits </i> </th>
                 <td>  </td>
                 <td> > 512 MB</td>
                 <td>
-                    <code>
                     <pre> 
     "total_hits": 42,
                     </pre>
-                    </code>
                 </td>
             </tr>
-            <tr align="left" style="vertical-align:top">
+            <tr align="left" valign="top">
                 <th><i> get_traffic_volume </i> </th>
                 <td> totalbytes </td>
                 <td> > 512 MB</td>
                 <td>
-                    <code>
                     <pre> 
     "traffic_volume": 145964, 
                     </pre>
-                    </code>
                 </td>
             </tr>
-            <tr align="left" style="vertical-align:top">
+            <tr align="left" valign="top">
                 <th><i>get_status_code_level_hit_counts </i> </th>
                 <td>statuscode</td>
                 <td> > 512 MB</td>
                 <td>
-                    <code>
                     <pre> 
     "hits_2xx": 42,
     "hits_3xx": 0,
     "hits_4xx": 0,
     "hits_5xx": 0,
                     </pre>
-                    </code>
                 </td>
             </tr>
-            <tr align="left" style="vertical-align:top">
+            <tr align="left" valign="top">
                 <th> <i> get_cachestatus </i> </th>
                 <td> cachestatus </td>
                 <td> > 512 MB</td>
                 <td>
-                    <code>
                     <pre>
     "cache_hit": 42,
     "cache_miss": 0,
                     </pre>
-                    </code>
                 </td>
             </tr>
-            <tr align="left" style="vertical-align:top">
+            <tr align="left" valign="top">
                 <th> <i> get_offload_rate </i> </th>
                 <td> cachestatus </td>
                 <td> > 512 MB</td>
                 <td>
-                    <code>
                     <pre> 
     "offload_rate": 10.0, 
                     </pre> 
-                    </code>
                 </td>
             </tr>
-            <tr align="left" style="vertical-align:top">
+            <tr align="left" valign="top">
                 <th> <i> get_origin_response_time </i> </th>
                 <td> cachestatus, cacherefreshsrc, turnaroundtimemsec </td>
                 <td> > 512 MB</td>
                 <td>
-                    <code>
                     <pre> 
     "origin_response_time": 10, 
                     </pre> 
-                    </code>
                 </td>
             </tr>
-            <tr align="left" style="vertical-align:top">
+            <tr align="left" valign="top">
                 <th> <i> get_user_agent_details </i> </th>
                 <td> ua </td>
                 <td> > 1024 MB</td>
                 <td>
-                    <code>
                     <pre>
     "os": {
         "Windows": 30
@@ -412,7 +406,6 @@ The following are the details on the list of input configuration files used by t
         "Windows": 30
         },
                     </pre>
-                    </code>
                 </td>
             </tr>
         </tbody>
@@ -459,11 +452,13 @@ The following are the details on the list of input configuration files used by t
 5. This file can be manually edited or generated using the steps mentioned [here](docs/config-setup-provision.md)
 
 ## Configuration File Setup
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Follow this document to create the config files customised for your stream, 
 [Config files Setup Reference](docs/config-setup.md)
 
 ## Script Usage
+<p align="left"><a href="#top">Back to Top</a></p>
 
 ```python
 % python run_aggregations.py --help
@@ -483,6 +478,7 @@ options:
 ```
 
 ## Testing with an Input file locally
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Before setting up in the cloud server, this can be tested locally to ensure the aggregated output is as expected as below. 
 - Ensure to update the configs as needed in `configs/` directory
@@ -538,9 +534,12 @@ Result...
 </details>
 
 ## How to setup in AWS
+<p align="left"><a href="#top">Back to Top</a></p>
 
+Follow this document for detailed setup instructions on AWS, 
 [AWS Setup Reference](docs/AWS-setup.md)
 
 ## How to setup in Azure
+<p align="left"><a href="#top">Back to Top</a></p>
 
-[Azure Setup Reference](docs/Azure-setup.md)
+Follow this document for detailed setup instructions on Azure, [Azure Setup Reference](docs/Azure-setup.md)
