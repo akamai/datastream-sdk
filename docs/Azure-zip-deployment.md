@@ -27,7 +27,7 @@ This document outlines the steps to configure and deploy Python Azure functions 
     + [Step 6: Update the function app's settings to connect to the storage accounts](#step-6-update-the-function-app-s-settings-to-connect-to-the-storage-accounts)
       - [Step 6.1: Configure function app settings to connect to the storage account that receives input data](#step-61-configure-function-app-settings-to-connect-to-the-storage-account-that-receives-input-data)
       - [Step 6.2: Configure function app settings to connect to the storage account that contains the config files](#step-62-configure-function-app-settings-to-connect-to-the-storage-account-that-contains-the-config-files)
-  * [Create an Azure Cosmos Core (SQL) API serverless account, database and container using Azure CLI](#create-an-azure-cosmos-core--sql--api-serverless-account--database-and-container-using-azure-cli)
+  * [Create an Azure Cosmos Core (SQL) API serverless account, database and container using Azure CLI](#create-an-azure-cosmos-core-sql-api-serverless-account-database-and-container-using-azure-cli)
     + [Step 1: Declare Variables](#step-1-declare-variables)
     + [Step 2: Create a new Azure Cosmos DB database account](#step-2-create-a-new-azure-cosmos-db-database-account)
     + [Step 3: Create an SQL database under an Azure Cosmos DB account](#step-3-create-an-sql-database-under-an-azure-cosmos-db-account)

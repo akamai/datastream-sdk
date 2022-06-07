@@ -1,10 +1,18 @@
 <div id="top"></div>
 
-# DS2 Dashboard
+# DataStream2 SDK
+
+To empower DS2 customers and create a value to the data delivered to customer object stores(AWS S3, Azure Blobs), business value driven SDK/Package is provided to customer to run on a serverless function (Lambda, Azure functions) and derive metrics to various destination like cloudwatch, SNS, DyanoDB, CosmosDB etc..
+
+Built With
+
+* python3.8
+* pandas
+* httpagentparser
+
 
 ## Table of Contents
 
-* [About The Project](#about-the-project)
 * [Features](#features)
 * [Input](#input)
 * [Sample Output](#sample-output)
@@ -21,17 +29,6 @@
 * [Testing with an Input file locally](#testing-with-an-input-file-locally)
 * [How to setup in AWS](#how-to-setup-in-aws)
 * [How to setup in Azure](#how-to-setup-in-azure)
-
-## About The Project
-<p align="left"><a href="#top">Back to Top</a></p>
-
-To empower DS2 customers and create a value to the data delivered to customer object store(S3), business value driven SDK/Package is provided to customer to run on a serverless function (Lambda, Azure functions) and derive metrics to various destination like cloudwatch, SNS, DyanoDB, CosmosDB etc..
-
-Built With
-
-* python3.8
-* pandas
-* httpagentparser
 
 
 ##  Features 
