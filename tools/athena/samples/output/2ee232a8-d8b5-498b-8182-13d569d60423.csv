@@ -1,0 +1,8 @@
+"cp","req_5min","user_agent","AvgBytes","TotalBytes","1xx","2xx","3xx","4xx","5xx","201_hits","originResponseTime","numCacheHit","numCacheMiss","offloadRate","totalRequests"
+"80765","2020-11-30 20:30:00.000","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/70.0.3538.77 Safari/537.36","3241.0","226870000","0","70000","0","0","0","0",,"70000","0","100.0","70000"
+"80765","2020-12-02 00:20:00.000","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/70.0.3538.77 Safari/537.36","3241.0","32410","0","10","0","0","0","0",,"10","0","100.0","10"
+"80765","2020-11-30 20:35:00.000","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/70.0.3538.77 Safari/537.36","3241.0","97230","1","25","1","1","2","0",,"24","6","80.0","30"
+"80765","2020-12-12 10:20:00.000","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/70.0.3538.77 Safari/537.36","3241.0","16205","0","3","0","0","2","0",,"4","1","80.0","5"
+"80765","2020-11-30 23:25:00.000","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/70.0.3538.77 Safari/537.36","3241.0","16205","0","5","0","0","0","0",,"5","0","100.0","5"
+"80765","2020-11-30 23:20:00.000","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/70.0.3538.77 Safari/537.36","3241.0","16205","1","2","1","1","0","0",,"5","0","100.0","5"
+"80765","2020-12-12 10:25:00.000","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/70.0.3538.77 Safari/537.36","3241.0","16205","0","5","0","0","0","0",,"0","5","0.0","5"

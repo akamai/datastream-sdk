@@ -1,0 +1,205 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <script>
+
+        function Call(value, tabl) {
+            var arr = [];
+            if (value == '') {
+                mydata = original;
+            }
+            else {
+                for (var i = 0; i < mydata.length; i++) {
+                    if (mydata[i] === "max" || mydata[i] === "mean" || mydata[i] === "min" || mydata[i] === "sum" || mydata[i] === "count") {
+                        arr.push(mydata[i])
+                    }
+                    else {
+
+                    }
+                }
+                mydata = arr;
+            }
+
+            function_table = tabl.parentNode.parentNode.querySelector("#agg_functions").querySelectorAll("tr");
+            for (var i = 0; i < function_table.length; i++) {
+                myfunc = function_table[i].querySelector(".myfunction")
+                myfuncname = myfunc.innerText
+                var done = true;
+                mydata.forEach(element => {
+                    if (element == myfuncname) {
+                        done = false
+                    }
+                });
+                mycheckbox = function_table[i].querySelector(".mycbox")
+                mycheckbox.checked = false;
+                if (done) {
+                    mycheckbox.disabled = true;
+                }
+                else {
+                    mycheckbox.disabled = false;
+                }
+            }
+        }
+
+    </script>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">
+                    Please choose your configurations
+                </a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href=""><span class="glyphicon glyphicon-refresh"></span> Refresh</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        {% include 'messages.html' %}
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- Aggregation Interval -->
+            {% if allow_time_based_aggregation%}
+            <table class="table">
+                <caption>
+                    Choose the interval in seconds to aggregate the data
+                </caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Aggregation Interval (in secs)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% with "agg_interval" as var %}
+                    <tr>
+                        <td>
+                            This is applicable only when <code>Request time</code> is part of the stream. <br>
+                            Leave it empty to disable time based aggregation
+                        </td>
+                    </tr>
+                    <tr>
+                    <td>
+                        <!-- value="300"  -->
+                        <input type="number" min="1" step="1" 
+                        name={{var}} class="form-control" 
+                        onchange="Call(this.value,this)" 
+                        oninput="validity.valid||(value='');">
+                    </td>
+                    </tr>
+
+                    {% endwith %}
+                </tbody>
+            </table>
+            {%endif%}
+
+            <!-- Basic Aggregations on DataSet Fields -->
+            <table class="table">
+                <caption>
+                    Choose from the list of Supported Aggregate functions for the Dataset
+                </caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Dataset field Id</th>
+                        <th scope="col">Dataset field Name</th>
+                        <th scope="col">Supported Aggregate functions for the field</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in data %}
+                    <tr>
+
+                        <td>{{i.field_id}}</td>
+                        <td>{{i.field_name}}</td>
+
+                        <script>
+                            var jsonstr = JSON.stringify({{ i.field_agg_functions | safe }});
+                            var mydata = JSON.parse(jsonstr);
+                            var original = mydata;
+                        </script>
+
+                        <td>
+                            <table class="table table-hover">
+
+                                <tbody id="agg_functions">
+                                    {% for agg_function in i.field_agg_functions %}
+
+                                    {% with "aggFunction"|add:"^"|add:i.field_name|add:"^"|add:agg_function as varname %}
+
+                                    <tr>
+                                        <td class="col-md-2">
+                                            <div class="">
+                                                <input name={{varname}} class="mycbox form-check-input mt-0"
+                                                    type="checkbox" aria-label="Checkbox for following text input">
+                                            </div>
+                                        </td>
+                                        <td class="myfunction">{{agg_function}}</td>
+                                    </tr>
+
+                                    {% endwith %}
+
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </td>
+
+                    </tr>
+                    {%endfor%}
+
+                </tbody>
+            </table>
+
+            <!-- Custom Functions -->
+            <table class="table table-hover" name="custom-functions">
+                <caption>
+                    Choose from the list of available custom fuctions
+                </caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Check</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for func_name, func_desc in custom_functions.items %}
+                    <tr>
+                        <td>
+                            <div class="">
+                                <input name={{func_name}} class="form-check-input mt-0" type="checkbox"
+                                    value={{func_name}} aria-label="Checkbox for following text input">
+                            </div>
+                        </td>
+                        <td>{{func_name}}</td>
+                        <td>{{func_desc}}</td>
+                    </tr>
+                    {%endfor%}
+
+                </tbody>
+            </table>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+
+</body>
+
+</html>
