@@ -10,7 +10,6 @@ Built With
 * pandas
 * httpagentparser
 
-
 ## Table of Contents
 
 * [Features](#features)
