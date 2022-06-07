@@ -263,7 +263,7 @@ Now we are good to run our APIs.
         </th>
     </tr>
     <tr>
-        <td style="vertical-align:top">
+        <td valign="top">
             <a href="https://developer.akamai.com/api/core_features/datastream2_config/v1.html#gettemplatename">List data set fields
 </a>
         </td>
@@ -274,7 +274,7 @@ Now we are good to run our APIs.
         </td>
     </tr>
     <tr>
-        <td style="vertical-align:top">
+        <td valign="top">
             <a href="https://developer.akamai.com/api/core_features/datastream2_config/v1.html#getstreams">List all streams</a>
         </td>
         <td>
@@ -284,7 +284,7 @@ Now we are good to run our APIs.
         </td>
     </tr>
     <tr>
-        <td style="vertical-align:top">
+        <td valign="top">
             <a href="https://developer.akamai.com/api/core_features/datastream2_config/v1.html#getstream">Get particular stream details</a>
         </td>
         <td>

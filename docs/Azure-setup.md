@@ -1,8 +1,11 @@
+<div id="top"></div>
+
 # DataFlow
 
 ![Flowchart](images/azure_functions_dataflow.png)
 
 # Azure SDK provisioning 
+<p align="left"><a href="#top">Back to Top</a></p>
 
 This document describes 2 methods of provisioning 
 - [Deployment using Azure Portal](Azure-portal-deployment.md)

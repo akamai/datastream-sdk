@@ -1,8 +1,11 @@
+<div id="top"></div>
+
 # Azure SDK provisioning 
 
 ## Deployment using Azure Portal
 
 ## Setup Instructions
+<p align="left"><a href="#top">Back to Top</a></p>
 
 This document outlines the steps to configure and deploy Python Azure functions using portal 
 
@@ -11,15 +14,16 @@ This document outlines the steps to configure and deploy Python Azure functions 
 * [Create supporting Azure resources for your function](#create-supporting-azure-resources-for-your-function)
     - [Create Resource group](#create-resource-group)
     - [Create Storage account](#create-storage-account)
-        - [Create a Container](#create-a-container)
+    - [Create a Container](#create-a-container)
         - [Upload config files to the Container](#upload-config-files-to-the-container)
     - [Create Function app](#create-function-app) 
-* [Create an Azure Cosmos Core (SQL) API serverless account, database and container using Azure CLI](#create-an-azure-cosmos-core--sql--api-serverless-account--database-and-container-using-azure-cli)
+* [Create an Azure Cosmos Core (SQL) API serverless account, database and container using Azure CLI](#create-an-azure-cosmos-core-sql-api-serverless-account-database-and-container-using-azure-cli)
     - [Create cosmos DB account](#create-cosmos-db-account)
     - [Create an SQL database and container](#create-an-sql-database-and-container)
 * [Update Function App configuration settings](#update-function-app-configuration-settings)
 * [Deployment](#deployment)
 ## Prerequisite
+<p align="left"><a href="#top">Back to Top</a></p>
 
 1. Git Clone the repo
 
@@ -44,7 +48,8 @@ This document outlines the steps to configure and deploy Python Azure functions 
 
 ## Create supporting Azure resources for your function
 
-### Create Resource group 
+### Create Resource group
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Create **Resource group** (say, `myResourceGroup`) if it doesn't exists
 
@@ -60,6 +65,7 @@ Create **Resource group** (say, `myResourceGroup`) if it doesn't exists
 7. Select Refresh from the top menu to refresh the resource group list, and then select the newly created resource group to open it. Or select Notification(the bell icon) from the top, and then select Go to resource group to open the newly created resource group
 
 ### Create Storage account 
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Create **Storage account** (say, `myStorageAccount`) in the created resource group
 
@@ -69,39 +75,39 @@ Create **Storage account** (say, `myStorageAccount`) in the created resource gro
 
     <table>
     <thead>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th> Section </th>
         <th> Field </th>
         <th> Suggested value </th>
     </tr>
     </thead>
     <tbody>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <td> Project details </td>
         <td> Subscription </td>
         <td> Select the subscription for the new storage account. </td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <td> Project details </td>
         <td> Resource group	</td>
         <td> Create a new resource group for this storage account, or select an existing one. For more information, see <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-groups"> Resource groups </a>. </td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <td> Instance details </td>
         <td> Storage account name </td>
         <td> Choose a unique name for your storage account. <br> Storage account names must be between 3 and 24 characters in length and may contain numbers and lowercase letters only. </td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <td> Instance details </td>
         <td> Region </td>
         <td> Select the appropriate region for your storage account.</td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <td> Instance details </td>
         <td> Performance </td>
         <td> Select your desired Performance. <br> <b>Preferred:</b> <code><i><b>Standard</b>: Recommended for most scenarios (general-purpose v2 account)</i>. </code></td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <td> Instance details </td>
         <td> Redundancy	</td>
         <td> Select your desired redundancy configuration.<br> <b>Preferred</b>: <code><i>Locally-redundant storage(LRS)</i> </code></td>
@@ -109,7 +115,8 @@ Create **Storage account** (say, `myStorageAccount`) in the created resource gro
     <tbody>
     </table>
 
-#### Create a Container
+### Create a Container
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Create **Container** (say, `metadata`) in the created Storage account.
 
@@ -130,7 +137,8 @@ Create **Container** (say, `metadata`) in the created Storage account.
 4. Select all the config files in the `configs/` directory inside the git repo to upload.
 5. Select the Upload button to upload all the config files .
 
-### Create Function app 
+### Create Function app
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Create **Function app** (say, `myfunctionApp`) in the created Resource group and Storage account using the following steps, 
 
@@ -140,61 +148,61 @@ Create **Function app** (say, `myfunctionApp`) in the created Resource group and
 
     <table>
     <thead>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th>Setting</th>	
         <th>Suggested value	</th>
         <th>Description</th>
     </tr>
     </thead>
     <tbody>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th>Subscription </th>
         <td>Your subscription </td>
         <td>The subscription under which this new function app is created.</td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th> Resource Group </th>
         <td> <code>myResourceGroup</code> </td>
         <td>
             Resource group that is created in earlier steps
         </td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th> Function App name </th>
         <td> Globally unique name </td>
         <td> Name that identifies your new function app. Valid charactersare a-z (case insensitive), 0-9, and -.</td>
         </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th> Publish </th>
         <td> <i> Code </i> </td>
         <td> Option to publish code files or a Docker container.</td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th> Runtime stack </th>
         <td> <i>Python</i> </td>
         <td> Choose a runtime that supports the function programming language.</td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th> Version </th>
         <td> <i>3.8</i></td>
         <td> Version of the installed runtime. choose 3.8 or above.</td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th> Region </th>
         <td> Preferred region </td>
         <td></td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th> Storage account </th>
         <td> <code> myStorageAccount </code> </td>
         <td> storage account to be used by your function app. </td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th> Operating system </th>
         <td> <i>Linux</i></td>
         <td></td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th>Plan</th>
         <td>Consumption (Serverless)</td>
         <td> In this serverless hosting, you pay only for the time your functions run. </td>
@@ -203,9 +211,10 @@ Create **Function app** (say, `myfunctionApp`) in the created Resource group and
     </table>                                                
 
 
-### Create an Azure Cosmos Core (SQL) API serverless account, database and container using Azure CLI
+## Create an Azure Cosmos Core (SQL) API serverless account, database and container using Azure CLI
 
-#### Create cosmos DB account
+### Create cosmos DB account
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Create **cosmos DB account**
 
@@ -216,29 +225,29 @@ Create **cosmos DB account**
 
     <table>
     <thead>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th>Setting</th>	
         <th>Suggested value</th>
     </tr>
     </thead>
     <tbody>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th>Subscription </th>
         <td>Select the Azure subscription that you want to use for this Azure Cosmos account.</td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th>Resource Group </th>
         <td>Select the resource group created in the first step. <br>Say, <code>myResourceGroup </code></td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th>Account Name </th>
         <td>Enter a unique name to identify your Azure Cosmos account. <br> The name can only contain lowercase letters, numbers, and the hyphen (-) character. It must be between 3-44 characters in length. <br> Say, <code>myCosmosAccount </code></td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th>Location </th>
         <td>The region closest to your users</td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th>Capacity mode </th>
         <td><b>Preferred:</b> <code>Serverless </code></td>
     </tr>
@@ -248,7 +257,8 @@ Create **cosmos DB account**
 6. Select **Review + create**.
 7. Review the account settings, and then select Create. It takes a few minutes to create the account. Wait for the portal page to display Your deployment is complete.
 
-#### Create an SQL database and container
+### Create an SQL database and container
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Create an **SQL database** under an Azure Cosmos DB account. Say,  `databaseName`. And Create an **SQL container** under an Azure Cosmos DB SQL database. Say, `cosmosContainerName`.
 
@@ -258,21 +268,21 @@ Create an **SQL database** under an Azure Cosmos DB account. Say,  `databaseName
 
     <table>
     <thead>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th>Setting</th>	
         <th>Suggested value</th>
     </tr>
     </thead>
     <tbody>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th>Database id </th>
         <td>Select <b>Create new</b> and Enter a unique name. <br> say, <code>databaseName</code></td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th>Container id </th>
         <td>Enter a unique name for the new container. <br> say, <code>cosmosContainerName</code></td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th>Partition key </th>
         <td>can be left as it is as <code>/id</code> </td>
     </tr>
@@ -282,7 +292,8 @@ Create an **SQL database** under an Azure Cosmos DB account. Say,  `databaseName
 6. Select OK. The Data Explorer displays the new database and the container that you created.
 
 
-### Update Function App configuration settings
+## Update Function App configuration settings
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Bind Storage account and cosmos db account in the created Azure function
 
@@ -308,36 +319,38 @@ Bind Storage account and cosmos db account in the created Azure function
 
         <table>
         <thead>
-        <tr align="left" style="vertical-align:top">
+        <tr align="left" valign="top">
             <th> Name </th>
             <th> Suggested Value </th>
             <th> Description </th>
         </tr>
         </thead>
         <tbody>
-        <tr align="left" style="vertical-align:top">
+        <tr align="left" valign="top">
             <th> AzureMetadataStorageContainer </th>
             <td> <code>configStorageContainer</code> </td>
             <td> Container Name where the config files are copied. </td>
         </tr>
-        <tr align="left" style="vertical-align:top">
+        <tr align="left" valign="top">
             <th> AzureMetadataStorageConnectionString </th>
             <td> <code>configStorageConnectionString </code> </td>
             <td> Connection String used to connect to Storage account containing config files</td>
         </tr>
-        <tr align="left" style="vertical-align:top">
+        <tr align="left" valign="top">
             <th> AzureDataStorageConnectionString </th>
             <td> <code>dataStorageConnectionString </code></td>
             <td> Connection String used to connect to Storage account that receives input data</td>
         </tr>        
-        <tr align="left" style="vertical-align:top">
+        <tr align="left" valign="top">
             <th> AzureCosmosDBConnectionString </th>
             <td> <code>cosmosDBConnectionString </code> </td>
             <td> Connection String used to connect to Cosmos DB to load the data</td>
         </tr>
         </tbody>
         </table>
-### Deployment 
+
+## Deployment 
+<p align="left"><a href="#top">Back to Top</a></p>
 
 The function app can be configured to fork the repo from a Github account.
 Before configuring ensure that the `host.json` and `cloud_modules_azure/function.json` file are updated accordingly and added to your branch in the repo.  
@@ -405,7 +418,8 @@ Before configuring ensure that the `host.json` and `cloud_modules_azure/function
     - select 'Deployment Center'.
     - Login Github and provide the repository and branch
 
-### Reference
+## References
+<p align="left"><a href="#top">Back to Top</a></p>
 
 - [Azure Functions documentation](https://docs.microsoft.com/en-us/azure/azure-functions/)
 - [Quickstart: Create a function in Azure with Python using Visual Studio Code](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-python)

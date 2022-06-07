@@ -1,3 +1,5 @@
+<div id="top"></div>
+
 The following document details about, 
 
 + [How to generate provision.json?](#how-to-generate-provisionjson)
@@ -9,12 +11,14 @@ The following document details about,
 # How to generate provision.json?
 
 ## Summary 
+<p align="left"><a href="#top">Back to Top</a></p>
 
 1. provision.json file contains the list of aggregate (min, max, sum etc) and custom functions that are selected for the output. 
 2. This file can manually be edited and placed in the configs folder. 
 3. Or can be genereted via the following UI tool.
 
 ## Prerequisite
+<p align="left"><a href="#top">Back to Top</a></p>
 
 1. Git Clone the repo
 
@@ -46,6 +50,7 @@ The following document details about,
 5. Pull the stream configuration file using the steps mentioned here - [How to pull Stream ID Configs?](config-setup-stream.md)
 
 ## Run the local server
+<p align="left"><a href="#top">Back to Top</a></p>
 
 1. cd to the `<repo>/frontend_modules` directory if not already
 
@@ -74,5 +79,6 @@ The following document details about,
 5. Once Submitted, this generates `provision.json` file under `configs/` directory with the selected dataset. 
 
 ## Reference
+<p align="left"><a href="#top">Back to Top</a></p>
 
 -  https://docs.djangoproject.com/en/4.0/topics/install/#installing-official-release

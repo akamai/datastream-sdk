@@ -1,8 +1,11 @@
+<div id="top"></div>
+
 # Dataflow
 
 ![Dataflow](images/aws_lambda_dataflow.png)
 
 # Setup Instructions
+<p align="left"><a href="#top">Back to Top</a></p>
 
 This document outlines the steps to configure and deploy Python Lambda functions with .zip file archives,
 
@@ -30,6 +33,8 @@ This document outlines the steps to configure and deploy Python Lambda functions
 * [Step 9: Setup the Lambda Trigger](#step-9-setup-the-lambda-trigger)
 
 ## Step 1: Setup Python
+<p align="left"><a href="#top">Back to Top</a></p>
+
 ### Install pip
 
 Install/Upgrade pip if it needed, 
@@ -50,6 +55,7 @@ python3 -m pip install --user virtualenv
 ```
 
 ## Step 2: Clone the repo
+<p align="left"><a href="#top">Back to Top</a></p>
 
 1. clone the repo
 
@@ -73,6 +79,7 @@ python3 -m pip install --user virtualenv
 [Config files Setup Reference](config-setup.md)
 
 ## Step 3: Setup Python virtual Environment
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Run the following commands from inside the project directory,
 if not, `cd` to the directory
@@ -91,6 +98,8 @@ if not, `cd` to the directory
 
 
 ## Step 4: Package the modules
+
+<p align="left"><a href="#top">Back to Top</a></p>
 
 ### Package the third party modules
 
@@ -198,6 +207,7 @@ if not, `cd` to the directory
     ```
 
 ## Step 5: Upload to S3 Bucket
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Create S3 bucket and upload the code base and config files.
 
@@ -263,6 +273,8 @@ Create S3 bucket and upload the code base and config files.
     ```
 
 ## Step 6: Setup the lambda layer
+
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Lambda layers provide a convenient way to package libraries and other dependencies that you can use with your Lambda functions. Using layers reduces the size of uploaded deployment archives and makes it faster to deploy your code.
 
@@ -331,6 +343,7 @@ This will be used to tag this layer for importing to the lamdba function.
     ```
 
 ## Step 7: Setup the IAM execution role
+<p align="left"><a href="#top">Back to Top</a></p>
 
 Create the execution role that gives your Lambda function permission to access AWS resources.
 
@@ -342,15 +355,15 @@ Create the execution role that gives your Lambda function permission to access A
 
     <table>
     <tbody>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th> Trusted entity </th> 
         <td> Lambda </td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th> Permissions policy </th>
         <td> AWSLambdaS3Policy </td>
     </tr>
-    <tr align="left" style="vertical-align:top">
+    <tr align="left" valign="top">
         <th> Role name </th>
         <td> Provide a unique role name <br>say, <code>lambda-test-exec-role</code> </td>
     </tr>
@@ -425,6 +438,7 @@ Create the execution role that gives your Lambda function permission to access A
     ```
 
 ## Step 8: Setup the Lambda function
+<p align="left"><a href="#top">Back to Top</a></p>
 
 ### To create Lambda function (console)
 
@@ -519,6 +533,7 @@ Create the execution role that gives your Lambda function permission to access A
     ```
 
 ## Step 9: Setup the Lambda Trigger
+<p align="left"><a href="#top">Back to Top</a></p>
 
 1. In the Lambda function console, Select Add Trigger
 2. Under S3 trigger, choose the S3 bucket that is intend to receive the data
@@ -527,6 +542,7 @@ When you configure an S3 trigger using the Lambda console, the console modifies 
 
 
 # References
+<p align="left"><a href="#top">Back to Top</a></p>
 
 - [AWS Lambda - Deploy Python Lambda functions with .zip file archives](https://docs.aws.amazon.com/lambda/latest/dg/python-package.html)
 - [AWS Lambda - Creating and sharing Lambda layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
