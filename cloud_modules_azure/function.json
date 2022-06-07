@@ -1,0 +1,22 @@
+{
+    "scriptFile": "__init__.py",
+    "entryPoint": "main",
+    "bindings": [
+        {
+            "name": "myblob",
+            "type": "blobTrigger",
+            "direction": "in",
+            "path": "data/{name}",
+            "connection": "AzureDataStorageConnectionString"
+        },
+        {
+            "type": "cosmosDB",
+            "direction": "out",
+            "name": "resultdoc",
+            "databaseName": "ds2db",
+            "collectionName": "ds2cont",
+            "createIfNotExists": "true",
+            "connectionStringSetting": "AzureCosmosDBConnectionString"
+        }
+    ]
+}

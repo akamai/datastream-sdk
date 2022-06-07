@@ -1,0 +1,44 @@
+{
+    "get_total_hits": {
+        "required-fields": [],
+        "description": "Show total HTTP requests"
+    },
+    "get_traffic_volume": {
+        "required-fields": [
+            "totalbytes"
+        ],
+        "description": "Show Total Traffic Volume"
+    },
+    "get_status_code_level_hit_counts": {
+        "required-fields": [
+            "statuscode"
+        ],
+        "description": "Show Status Code level (say 2xx, 3xx, 4xx, 5xx) counts of HTTP requests"
+    },
+    "get_cachestatus": {
+        "required-fields": [
+            "cachestatus"
+        ],
+        "description": "Show Cache Status"
+    },
+    "get_offload_rate": {
+        "required-fields": [
+            "cachestatus"
+        ],
+        "description": "Show Offload Rate"
+    },
+    "get_origin_response_time": {
+        "required-fields": [
+            "cachestatus",
+            "cacherefreshsrc",
+            "turnaroundtimemsec"
+        ],
+        "description": "Show Response Time"
+    },
+    "get_user_agent_details": {
+        "required-fields": [
+            "ua"
+        ],
+        "description": "Show User Agent details"
+    }
+}

@@ -1,0 +1,305 @@
+{
+    "streamId": 1234,
+    "streamVersionId": 1,
+    "streamName": "amazon-ds-demo",
+    "datasets": [
+        {
+            "datasetFields": [
+                {
+                    "datasetFieldDescription": "The Content Provider code associated with the request.",
+                    "datasetFieldId": 1000,
+                    "datasetFieldName": "CP code",
+                    "order": 0
+                },
+                {
+                    "datasetFieldDescription": "The identifier of the request.",
+                    "datasetFieldId": 1002,
+                    "datasetFieldName": "Request ID",
+                    "order": 1
+                },
+                {
+                    "datasetFieldDescription": "The time when the edge server accepted the request from the client.",
+                    "datasetFieldId": 1100,
+                    "datasetFieldName": "Request time",
+                    "order": 2
+                }
+            ],
+            "datasetGroupDescription": "Contains fields that can be used to identify/tag a log line",
+            "datasetGroupName": "Log information"
+        },
+        {
+            "datasetFields": [
+                {
+                    "datasetFieldDescription": "The content bytes served in the response.",
+                    "datasetFieldId": 1005,
+                    "datasetFieldName": "Bytes",
+                    "order": 3
+                },
+                {
+                    "datasetFieldDescription": "xxx",
+                    "datasetFieldId": 1101,
+                    "datasetFieldName": "xxx",
+                    "order": 4
+                },
+                {
+                    "datasetFieldDescription": "The IP address of the client.",
+                    "datasetFieldId": 1006,
+                    "datasetFieldName": "Client IP",
+                    "order": 5
+                },
+                {
+                    "datasetFieldDescription": "The HTTP status code of the response.",
+                    "datasetFieldId": 1008,
+                    "datasetFieldName": "HTTP status code",
+                    "order": 6
+                },
+                {
+                    "datasetFieldDescription": "The protocol of the request-response cycle, either HTTP or HTTPS.",
+                    "datasetFieldId": 1009,
+                    "datasetFieldName": "Protocol type",
+                    "order": 7
+                },
+                {
+                    "datasetFieldDescription": "The value of the Host header in the request.",
+                    "datasetFieldId": 1011,
+                    "datasetFieldName": "Request host",
+                    "order": 8
+                },
+                {
+                    "datasetFieldDescription": "The HTTP method of the request.",
+                    "datasetFieldId": 1012,
+                    "datasetFieldName": "Request method",
+                    "order": 9
+                },
+                {
+                    "datasetFieldDescription": "The path to a resource in the request, excluding query parameters.",
+                    "datasetFieldId": 1013,
+                    "datasetFieldName": "Request path",
+                    "order": 10
+                },
+                {
+                    "datasetFieldDescription": "The port number of the requested service.",
+                    "datasetFieldId": 1014,
+                    "datasetFieldName": "Request port",
+                    "order": 11
+                },
+                {
+                    "datasetFieldDescription": "The size of the entity-body in bytes returned to the client.",
+                    "datasetFieldId": 1015,
+                    "datasetFieldName": "Response Content-Length",
+                    "order": 12
+                },
+                {
+                    "datasetFieldDescription": "The type of the content returned to the client.",
+                    "datasetFieldId": 1016,
+                    "datasetFieldName": "Response Content-Type",
+                    "order": 13
+                },
+                {
+                    "datasetFieldDescription": "The user agent making the request.",
+                    "datasetFieldId": 1017,
+                    "datasetFieldName": "User-Agent",
+                    "order": 14
+                },
+                {
+                    "datasetFieldDescription": "The time in milliseconds between when the edge server accepts the connection and the completion of the SSL handshake.",
+                    "datasetFieldId": 2001,
+                    "datasetFieldName": "SSL overhead time",
+                    "order": 26
+                },
+                {
+                    "datasetFieldDescription": "The protocol of the SSL handshake, either SSLv2, SSLv3, or TLSv1.",
+                    "datasetFieldId": 2002,
+                    "datasetFieldName": "SSL version",
+                    "order": 27
+                },
+                {
+                    "datasetFieldDescription": "The size of the object, excluding HTTP response headers.",
+                    "datasetFieldId": 2003,
+                    "datasetFieldName": "Object size",
+                    "order": 28
+                },
+                {
+                    "datasetFieldDescription": "The size of the uncompressed object, if zipped before sending to the client. This field will be populated only when the Last mile acceleration is enabled.",
+                    "datasetFieldId": 2004,
+                    "datasetFieldName": "Uncompressed size",
+                    "order": 29
+                },
+                {
+                    "datasetFieldDescription": "TCP overhead in bytes for the request and response.",
+                    "datasetFieldId": 2006,
+                    "datasetFieldName": "Overhead bytes",
+                    "order": 31
+                },
+                {
+                    "datasetFieldDescription": "The bytes served in the response, including the content and all overheads.",
+                    "datasetFieldId": 2008,
+                    "datasetFieldName": "Total bytes",
+                    "order": 33
+                },
+                {
+                    "datasetFieldDescription": "The query string in the incoming URI from the client. Returns only when the Cache Key Parameter behavior is set to include all parameters.",
+                    "datasetFieldId": 2009,
+                    "datasetFieldName": "Query string",
+                    "order": 34
+                }
+            ],
+            "datasetGroupDescription": "Contains fields representing the exchange of data between Akamai & end user",
+            "datasetGroupName": "Message exchange data"
+        },
+        {
+            "datasetFields": [
+                {
+                    "datasetFieldDescription": "The list of languages acceptable in the response.",
+                    "datasetFieldId": 1019,
+                    "datasetFieldName": "Accept-Language",
+                    "order": 15
+                },
+                {
+                    "datasetFieldDescription": "A list of HTTP cookies previously sent by the server with the Set-Cookie header.",
+                    "datasetFieldId": 1023,
+                    "datasetFieldName": "Cookie",
+                    "order": 16
+                },
+                {
+                    "datasetFieldDescription": "The part of an entity that the server is requested to return.",
+                    "datasetFieldId": 1031,
+                    "datasetFieldName": "Range",
+                    "order": 17
+                },
+                {
+                    "datasetFieldDescription": "The address of the resource from which the requested URI was followed.",
+                    "datasetFieldId": 1032,
+                    "datasetFieldName": "Referer",
+                    "order": 18
+                },
+                {
+                    "datasetFieldDescription": "The originating IP address of a client connecting to a web server through an HTTP proxy or load balancer.",
+                    "datasetFieldId": 1037,
+                    "datasetFieldName": "X-Forwarded-For",
+                    "order": 19
+                },
+                {
+                    "datasetFieldDescription": "The time in seconds that the object is valid for positive cache responses.",
+                    "datasetFieldId": 2005,
+                    "datasetFieldName": "Max age",
+                    "order": 30
+                }
+            ],
+            "datasetGroupDescription": "Contains fields representing the information sent as part of request headers to Akamai",
+            "datasetGroupName": "Request header data"
+        },
+        {
+            "datasetFields": [
+                {
+                    "datasetFieldDescription": "The time it takes the edge server to fully read the request.",
+                    "datasetFieldId": 1033,
+                    "datasetFieldName": "Request end time",
+                    "order": 20
+                },
+                {
+                    "datasetFieldDescription": "The Edge IP",
+                    "datasetFieldId": 1066,
+                    "datasetFieldName": "Edge Ip",
+                    "order": 23
+                },
+                {
+                    "datasetFieldDescription": "A string describing the problem with serving the request.",
+                    "datasetFieldId": 1068,
+                    "datasetFieldName": "Error code",
+                    "order": 24
+                },
+                {
+                    "datasetFieldDescription": "The time in milliseconds from when the edge server receives the last byte of the request to when it sends the first bytes of the response.",
+                    "datasetFieldId": 1102,
+                    "datasetFieldName": "Turn around time",
+                    "order": 21
+                },
+                {
+                    "datasetFieldDescription": "The time in milliseconds from when the edge server was ready to send the first byte to when it sent the last byte of the response.",
+                    "datasetFieldId": 1103,
+                    "datasetFieldName": "Transfer time",
+                    "order": 22
+                },
+                {
+                    "datasetFieldDescription": "The time in seconds between the start of the request and the completion of the DNS lookup, if one was required. For cached IP addresses, this value is zero. This field will be populated only when the instantConfig behavior is enabled.",
+                    "datasetFieldId": 2007,
+                    "datasetFieldName": "DNS lookup time",
+                    "order": 32
+                }
+            ],
+            "datasetGroupDescription": "Contains fields representing the performance/troubleshooting metrics",
+            "datasetGroupName": "Network performance data"
+        },
+        {
+            "datasetFields": [
+                {
+                    "datasetFieldDescription": "The data specified in the Custom Log Field of the Log Requests Details that you want to receive in the stream.",
+                    "datasetFieldId": 1082,
+                    "datasetFieldName": "Custom field",
+                    "order": 25
+                }
+            ],
+            "datasetGroupName": "Other"
+        },
+        {
+            "datasetFields": [
+                {
+                    "datasetFieldDescription": "The value of this field shows if the request was served from Edge cache or peer (1) or forwarded to parent or origin (0).",
+                    "datasetFieldId": 2010,
+                    "datasetFieldName": "Cache status",
+                    "order": 35
+                },
+                {
+                    "datasetFieldDescription": "The value of this field shows if the request was served from Edge cache or peer (1) or forwarded to parent or origin (0).",
+                    "datasetFieldId": 2011,
+                    "datasetFieldName": "Cache Refresh Source",
+                    "order": 36
+                }
+            ],
+            "datasetGroupDescription": "Contains fields on statistics about Akamai caching data.",
+            "datasetGroupName": "Cache data"
+        }
+    ],
+    "connectors": [
+        {
+            "connectorType": "S3",
+            "connectorId": 14060,
+            "bucket": "datastreambztest",
+            "path": "test-data",
+            "compressLogs": true,
+            "connectorName": "amazon-ds2-s3-cloudtest",
+            "region": "us-east-1"
+        }
+    ],
+    "productName": "Adaptive Media Delivery",
+    "productId": "Adaptive_Media_Delivery",
+    "templateName": "EDGE_LOGS",
+    "config": {
+        "delimiter": "SPACE",
+        "uploadFilePrefix": "ak",
+        "uploadFileSuffix": "ds",
+        "frequency": {
+            "timeInSec": 30,
+            "sizeInMb": 4,
+            "numberOfRecords": 32000
+        },
+        "useStaticPublicIP": false,
+        "format": "STRUCTURED"
+    },
+    "groupId": 12345,
+    "groupName": "Akamai Internal-1-7KLGU",
+    "contractId": "1-7KLGU",
+    "properties": [
+        {
+            "propertyId": 2345,
+            "propertyName": "demo.com"
+        }
+    ],
+    "streamType": "RAW_LOGS",
+    "activationStatus": "ACTIVATED",
+    "createdBy": "datastream",
+    "createdDate": "01-01-1970 00:00:00 GMT",
+    "modifiedBy": "datastream",
+    "modifiedDate": "01-01-1970 00:00:00 GMT"
+}

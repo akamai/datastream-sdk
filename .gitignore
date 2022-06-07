@@ -1,0 +1,10 @@
+.DS_Store
+**/.DS_Store
+db.sqlite3
+__pycache__/
+
+.python_packages
+.venv
+local.settings.json
+ds_code-base.zip
+

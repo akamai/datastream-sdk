@@ -1,0 +1,52 @@
+{
+    "aggregation-interval": 300,
+    "custom-functions": [
+        "get_total_hits",
+        "get_traffic_volume",
+        "get_status_code_level_hit_counts",
+        "get_cachestatus",
+        "get_offload_rate",
+        "get_origin_response_time",
+        "get_user_agent_details"
+    ],
+    "dnslookuptimemsec": [
+        "min",
+        "max",
+        "sum",
+        "count"
+    ],
+    "bytes": [
+        "max",
+        "sum",
+        "count"
+    ],
+    "objsize": [
+        "min",
+        "max",
+        "sum",
+        "count"
+    ],
+    "uncompressedsize": [
+        "sum"
+    ],
+    "transfertimemsec": [
+        "min",
+        "max"
+    ],
+    "totalbytes": [
+        "min",
+        "max",
+        "sum",
+        "mean"
+    ],
+    "tlsoverheadtimemsec": [
+        "min",
+        "max",
+        "sum"
+    ],
+    "overheadbytes": [
+        "min",
+        "max",
+        "sum"
+    ]
+}

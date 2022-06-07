@@ -1,0 +1,369 @@
+{
+    "1000": {
+        "name": "cp",
+        "cname": "CP code",
+        "dtype": "string",
+        "desc": "The Content Provider code associated with the request"
+    },
+    "1002": {
+        "name": "reqId",
+        "cname": "Request ID",
+        "dtype": "string",
+        "desc": "The identifier of the request"
+    },
+    "1100": {
+        "name": "reqTimeSec",
+        "cname": "Request time",
+        "dtype": "bigint",
+        "desc": "The Unix epoch time when the edge server accepted the request from the client",
+        "agg": [
+            "min",
+            "max",
+            "sum",
+            "mean",
+            "median",
+            "variance",
+            "any"
+        ]
+    },
+    "1005": {
+        "name": "bytes",
+        "cname": "Bytes",
+        "dtype": "bigint",
+        "desc": "The content bytes served in the response body. For HTTP/2, this includes overhead bytes",
+        "agg": [
+            "min",
+            "max",
+            "sum",
+            "mean",
+            "median",
+            "variance",
+            "any"
+        ]
+    },
+    "1006": {
+        "name": "cliIP",
+        "cname": "Client IP",
+        "dtype": "string",
+        "desc": "The IPv4 or IPv6 address of the requesting client"
+    },
+    "1008": {
+        "name": "statusCode",
+        "cname": "HTTP status code",
+        "dtype": "bigint",
+        "desc": "The HTTP status code of the response. Returns zero if the TCP connection to the client ended before the server sent a response",
+        "agg": [
+            "unique_counts"
+        ]
+    },
+    "1009": {
+        "name": "proto",
+        "cname": "Protocol dtype",
+        "dtype": "string",
+        "desc": "The scheme of the request-response cycle"
+    },
+    "1011": {
+        "name": "reqHost",
+        "cname": "Request host",
+        "dtype": "string"
+    },
+    "1012": {
+        "name": "reqMethod",
+        "cname": "Request method",
+        "dtype": "string"
+    },
+    "1013": {
+        "name": "reqPath",
+        "cname": "Request path",
+        "dtype": "string"
+    },
+    "1014": {
+        "name": "reqPort",
+        "cname": "Request port",
+        "dtype": "string"
+    },
+    "1015": {
+        "name": "rspContentLen",
+        "cname": "Response Content-Length",
+        "dtype": "string"
+    },
+    "1016": {
+        "name": "rspContentdtype",
+        "cname": "Response Content-dtype",
+        "dtype": "string"
+    },
+    "1017": {
+        "name": "UA",
+        "cname": "User-Agent",
+        "dtype": "string"
+    },
+    "1066": {
+        "name": "edgeIP",
+        "cname": "Edge Ip",
+        "dtype": "string"
+    },
+    "2001": {
+        "name": "tlsOverheadTimeMSec",
+        "cname": "SSL overhead time",
+        "dtype": "bigint",
+        "agg": [
+            "min",
+            "max",
+            "sum",
+            "mean",
+            "median",
+            "variance",
+            "any"
+        ]
+    },
+    "2002": {
+        "name": "tlsVersion",
+        "cname": "SSL version",
+        "dtype": "string"
+    },
+    "2003": {
+        "name": "objSize",
+        "cname": "Object size",
+        "dtype": "bigint",
+        "agg": [
+            "min",
+            "max",
+            "sum",
+            "mean",
+            "median",
+            "variance",
+            "any"
+        ]
+    },
+    "2004": {
+        "name": "uncompressedSize",
+        "cname": "Uncompressed size",
+        "dtype": "bigint",
+        "agg": [
+            "min",
+            "max",
+            "sum",
+            "mean",
+            "median",
+            "variance",
+            "any"
+        ]
+    },
+    "2006": {
+        "name": "overheadBytes",
+        "cname": "Overhead bytes",
+        "dtype": "bigint",
+        "agg": [
+            "min",
+            "max",
+            "sum",
+            "mean",
+            "median",
+            "variance",
+            "any"
+        ]
+    },
+    "2008": {
+        "name": "totalBytes",
+        "cname": "Total bytes",
+        "dtype": "bigint",
+        "agg": [
+            "min",
+            "max",
+            "sum",
+            "mean",
+            "median",
+            "variance",
+            "any"
+        ]
+    },
+    "2009": {
+        "name": "queryStr",
+        "cname": "Query string",
+        "dtype": "string"
+    },
+    "1019": {
+        "name": "accLang",
+        "cname": "Accept-Language",
+        "dtype": "string"
+    },
+    "1023": {
+        "name": "cookie",
+        "cname": "Cookie",
+        "dtype": "string"
+    },
+    "1031": {
+        "name": "range",
+        "cname": "Range",
+        "dtype": "string"
+    },
+    "1032": {
+        "name": "referer",
+        "cname": "Referer",
+        "dtype": "string"
+    },
+    "1037": {
+        "name": "xForwardedFor",
+        "cname": "X-Forwarded-For",
+        "dtype": "string"
+    },
+    "2005": {
+        "name": "maxAgeSec",
+        "cname": "Max age",
+        "dtype": "bigint"
+    },
+    "1033": {
+        "name": "reqEndTimeMSec",
+        "cname": "Request end time",
+        "dtype": "bigint",
+        "agg": [
+            "min",
+            "max",
+            "sum",
+            "mean",
+            "median",
+            "variance",
+            "any"
+        ]
+    },
+    "1068": {
+        "name": "errorCode",
+        "cname": "Error code",
+        "dtype": "string"
+    },
+    "1101": {
+        "name": "xxxx",
+        "cname": "xxxx",
+        "dtype": "bigint"
+    },
+    "1102": {
+        "name": "turnAroundTimeMSec",
+        "cname": "Turn around time",
+        "dtype": "bigint",
+        "agg": [
+            "min",
+            "max",
+            "sum",
+            "mean",
+            "median",
+            "variance",
+            "any"
+        ]
+    },
+    "1103": {
+        "name": "transferTimeMSec",
+        "cname": "Transfer time",
+        "dtype": "bigint",
+        "agg": [
+            "min",
+            "max",
+            "sum",
+            "mean",
+            "median",
+            "variance",
+            "any"
+        ]
+    },
+    "2007": {
+        "name": "dnsLookupTimeMSec",
+        "cname": "DNS lookup time",
+        "dtype": "bigint",
+        "agg": [
+            "min",
+            "max",
+            "sum",
+            "mean",
+            "median",
+            "variance",
+            "any"
+        ]
+    },
+    "1082": {
+        "name": "customField",
+        "cname": "Custom field",
+        "dtype": "string"
+    },
+    "2010": {
+        "name": "cacheStatus",
+        "cname": "Cache Status",
+        "dtype": "bigint"
+    },
+    "2011": {
+        "name": "cacheRefreshSrc",
+        "cname": "Cache Refresh Source",
+        "dtype": "string",
+        "agg": [
+            "unique_counts"
+        ]
+    },
+    "2012": {
+        "name": "country",
+        "cname": "Country/Region",
+        "dtype": "string",
+        "agg": [
+            "unique_counts"
+        ]
+    },
+    "2013": {
+        "name": "state",
+        "cname": "State",
+        "dtype": "string",
+        "agg": [
+            "unique_counts"
+        ]
+    },
+    "2014": {
+        "name": "city",
+        "cname": "City",
+        "dtype": "string",
+        "agg": [
+            "unique_counts"
+        ]
+    },
+    "2050": {
+        "name": "securityRules",
+        "cname": "Security rules",
+        "dtype": "string"
+    }, 
+    "2020": {
+        "name": "breadcrumbs",
+        "cname": "Breadcrumbs",
+        "dtype": "string"
+    },
+
+    "2021": {
+        "name": "lastByte",
+        "cname": "Last byte",
+        "dtype": "string"
+    },
+
+    "2051": {
+        "name": "isMidgress",
+        "cname": "bigint",
+        "dtype": "string", 
+        "agg" : [
+            "sum"
+        ]
+
+    },
+    "2052": {
+        "name": "serverCountry",
+        "cname": "Server country/region",
+        "dtype": "string"
+    },
+    "2053": {
+        "name": "billingRegion",
+        "cname": "Billing region",
+        "dtype": "string"
+    },
+    "3000": {
+        "name": "ewUsageInfo",
+        "cname": "EdgeWorkers usage",
+        "dtype": "string"
+    },
+    "3001": {
+        "name": "ewExecutionInfo",
+        "cname": "EdgeWorkers execution",
+        "dtype": "string"
+    }
+}

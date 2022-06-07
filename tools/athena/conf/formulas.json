@@ -1,0 +1,93 @@
+{
+    "dimension": {
+        "direct": [
+            "1000"
+        ],
+        "derived": [
+            "req_5min",
+            "user_agent"
+        ]
+    },
+    "functions": {
+        "hits_1xx": {
+            "q": "sum(case when _var_ / 100 = 1 then 1 else 0 end)",
+            "desc": "The count of 1xx error codes for this time interval"
+        },
+        "hits_2xx": {
+            "q": "sum(case when _var_ / 100 = 2 then 1 else 0 end)",
+            "desc": "The count of 2xx error codes for this time interval"
+        },
+        "hits_201": {
+            "q": "sum(case when _var_ = 201 then 1 else 0 end)",
+            "desc": "The count of 2xx error codes for this time interval"
+        },
+        "hits_3xx": {
+            "q": "sum(case when _var_ / 100 = 3 then 1 else 0 end)",
+            "desc": "The count of 3xx error codes for this time interval"
+        },
+        "hits_4xx": {
+            "q": "sum(case when _var_ / 100 = 4 then 1 else 0 end)",
+            "desc": "The count of 4xx error codes for this time interval"
+        },
+        "hits_5xx": {
+            "q": "sum(case when _var_ / 100 = 5 then 1 else 0 end)",
+            "desc": "The count of 5xx error codes for this time interval."
+        },
+        "AvgBytes": {
+            "q": "avg(_var_)",
+            "desc": "The average number of bytes for the specified time interval"
+        },
+        "TotalBytes": {
+            "q": "sum(_var_)",
+            "desc": "The average number of bytes for the specified time interval"
+        },
+        "AvgEdgeResponseTime": {
+            "q": "",
+            "desc": "The average of edgeResponseTime in milliseconds for this time interval"
+        },
+        "originResponseTime": {
+            "q": "sum(case when _var0_ = 0 and upper(_var1_) = 'ORIGIN' then _var_ end)",
+            "dependent_cols": [
+                "2010",
+                "2011"
+            ],
+            "desc": "The average of originResponseTime in milliseconds for this time interval"
+        },
+        "numCacheHit": {
+            "q": "sum(case when _var_ = 1 then 1 else 0 end)",
+            "desc": "The total number of requests that received the required data from the cache for this time interval"
+        },
+        "numCacheMiss": {
+            "q": "sum(case when _var_ = 0 then 1 else 0 end)",
+            "desc": "The total number of requests that received the required data from the origin for this time interval"
+        },
+        "offloadRate": {
+            "q": "(sum(case when _var_ = 1 then 1 else 0 end) * 100.00)/count(*)",
+            "desc": "The percentage value of cache hit requests divided by the total number of requests for this time interval"
+        },
+        "requestsPerSecond": {
+            "q": "",
+            "desc": "The average number of requestsPerSecond for this time interval"
+        },
+        "totalRequests": {
+            "q": "count(*)",
+            "desc": "The total number of requestfor this time interval"
+        },
+        "req_5min": {
+            "q": "from_unixtime(_var_ - (_var_ % 300))",
+            "desc": "Request Time rounded to the nearest 5 min interval"
+        },
+        "req_10min": {
+            "q": "from_unixtime(_var_ - (_var_ % 600))",
+            "desc": "Request Time rounded to the nearest 10 min interval"
+        },
+        "reqEnd_5mi": {
+            "q": "from_unixtime(_var_ - (_var_ % 300))",
+            "desc": "Request End Time rounded to the nearest 5 min interval"
+        },
+        "user_agent": {
+            "q": "url_decode(_var_)",
+            "desc": "Unescapes the URL encoded value."
+        }
+    }
+}
