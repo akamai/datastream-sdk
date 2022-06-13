@@ -169,22 +169,26 @@ The following are the details on the list of input configuration files used by t
 ### all_datastream2_fields.json
 
 1. This JSON file consists of all dataset Fields available in datastream 
-2. Example
-```json
-{
-    [...]
-	"2003": {
-		"name": "objSize",
-		"cname": "Object size",
-		"dtype": "bigint",
-		"agg": [
-			"min", "max", "sum", 
-		]
-	},
-    [...]
-}
-```
-3. This file contains the following details,
+    <details>
+    <summary>Example</summary>
+
+    ```json
+    {
+        [...]
+        "2003": {
+            "name": "objSize",
+            "cname": "Object size",
+            "dtype": "bigint",
+            "agg": [
+                "min", "max", "sum"
+            ]
+        },
+        [...]
+    }
+    ```
+    </details>
+
+2. This file contains the following details,
 
     <table>
     <tbody>
@@ -267,8 +271,8 @@ The following are the details on the list of input configuration files used by t
     </tbody>
     </table>
 
-4. Sample File is stored in: `configs/all_datastream2_fields.json`
-5. This is a common file and updated only when new fields are added to the datastream. 
+3. Sample File is stored in: [configs/all_datastream2_fields.json](configs/all_datastream2_fields.json)
+4. This is a common file and updated only when new fields are added to the datastream.
 
 
 ### all_custom_functions.json
@@ -308,7 +312,7 @@ The following are the details on the list of input configuration files used by t
     </tr>
     </table>
 
-3. Sample File is stored in: `configs/all_custom_functions.json`
+3. Sample File is stored in: [configs/all_custom_functions.json](configs/all_custom_functions.json)
 4. This is a common file and updated only when new functions are added to the datastream. 
 5. Following are the list of current available custom functions and their recommended Memory, 
 
@@ -412,7 +416,7 @@ The following are the details on the list of input configuration files used by t
 1. This is a JSON file containing the stream specific details.
 2. i.e this file is used to understand the fields configured for this stream.
 3. This can be pulled from portal using the steps mentioned [here](docs/config-setup-stream.md)
-4. Sample File is stored in: `configs/stream.json`
+4. Sample File is stored in: [configs/stream.json](configs/stream.json)
     - This needs to be updated with the stream specific file.
 
 ### provision.json
@@ -424,26 +428,29 @@ The following are the details on the list of input configuration files used by t
     ```json
     {
         "aggregation-interval": 300,
-        [...]
-        "bytes": [
-            "max",
-            "sum",
-            "count"
-        ],
-        [...]
         "custom-functions": [
             "get_status_code_level_hit_counts",
             "get_traffic_volume",
             [...]
         ]
+        [...]
+        "bytes": [
+            "max",
+            "sum"
+        ],
+        [...]
+        "city": [
+            "unique_counts"
+        ],
+        [...]
     }
     ```
     
     </details>
-2. function are triggerred to generate output for these selected aggregate functions for the input files.
+2. function are triggerred to generate output for the above selected aggregate functions for the input files.
 3. `"aggregation-interval"`, specifies the time in secs to aggregate the data based on the `Request Time`. 
     - Setting this to `-1` disables time based aggregation.
-4. Sample File is stored in: `configs/provision.json`
+4. Sample File is stored in: [configs/provision.json](configs/provision.json)
     - This needs to be updated with the stream specific file.
 5. This file can be manually edited or generated using the steps mentioned [here](docs/config-setup-provision.md)
 
