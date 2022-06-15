@@ -361,7 +361,7 @@ Create the execution role that gives your Lambda function permission to access A
     </tr>
     <tr align="left" valign="top">
         <th> Permissions policy </th>
-        <td> AWSLambdaS3Policy </td>
+        <td> AWSLambdaBasicExecutionRole </br> AmazonS3ReadOnlyAccess </td>
     </tr>
     <tr align="left" valign="top">
         <th> Role name </th>
@@ -369,9 +369,6 @@ Create the execution role that gives your Lambda function permission to access A
     </tr>
     </tbody>
     </table>
-
-4. Add `AmazonS3ReadOnlyAccess` to Permissions policies for this IAM role
-
 
 
 ### To create an execution role (API)
