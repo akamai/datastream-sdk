@@ -439,20 +439,28 @@ Create the execution role that gives your Lambda function permission to access A
 
 ### To create Lambda function (console)
 
-1. Create lambda function in lambda service
-2. Select code settings in function
-   - code option ->  upload from -> Amazon s3 location
-   - provide  s3 location of S3 bucket
-   - configure Runtime settings
-     - select  : python 3.8 or above
-     - Handler : cloud_modules_aws.lambda_handler
-     - Architecture : x86_64
-3. Set Configuration settings
-   - General configuration : timeout to 5-15 min ~
-   - Environment Variables :
-     - S3_METADATA_BUCKET:  yourmetadatabucketname
-     - S3_METADATA_PATH: configs
+1. In the AWS Lambda Console, Under Functions, Create the new lambda function with Python runtime.
+    - In _Change default execution role_, choose _Use an existing role_ and add the existing role created from the previous step
 
+2. Select code settings in function
+   - Code source ->  upload from -> Amazon s3 location
+   - provide the s3 location of S3 bucket where we uploaded the code base (say, ds_code-base.zip)
+
+3. Set **Configuration settings**
+    - Prefered timeout: 5-15 min ~
+    - Set the following Environment Variables :
+        - S3_METADATA_BUCKET:  {your metadata bucketname}
+        - S3_METADATA_PATH: {directory with the configs}
+
+4. Configure **Runtime settings**
+    - Select  : python 3.8 or above
+    - Handler : cloud_modules_aws.lambda_handler
+    - Architecture : x86_64
+
+5. Add **Layers**
+    - Choose the previously created layer from _Custom layers_
+    - Choose the Layer version
+    - Proceed to add 
 
 ### To create Lambda function (API)
 
