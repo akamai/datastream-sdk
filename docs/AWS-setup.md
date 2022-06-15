@@ -31,6 +31,7 @@ This document outlines the steps to configure and deploy Python Lambda functions
     + [To create Lambda function (console)](#to-create-lambda-function-console)
     + [To create Lambda function (API)](#to-create-lambda-function-api)
 * [Step 9: Setup the Lambda Trigger](#step-9-setup-the-lambda-trigger)
+* [Step 10: Setup CloudWatch Loggroup](#step-10-setup-cloudwatch-loggroup)
 
 ## Step 1: Setup Python
 <p align="left"><a href="#top">Back to Top</a></p>
@@ -541,9 +542,17 @@ Create the execution role that gives your Lambda function permission to access A
 <p align="left"><a href="#top">Back to Top</a></p>
 
 1. In the Lambda function console, Select Add Trigger
+
 2. Under S3 trigger, choose the S3 bucket that is intend to receive the data
 
 When you configure an S3 trigger using the Lambda console, the console modifies your function's resource-based policy to allow Amazon S3 to invoke the function.
+
+## Step 10: Setup CloudWatch Loggroup
+<p align="left"><a href="#top">Back to Top</a></p>
+
+1. In the CloudWatch Console, create a log group using > _Create Log Group_
+
+2. Specify the Log group name as _/aws/lambda/{lambda function name}_
 
 
 # References
