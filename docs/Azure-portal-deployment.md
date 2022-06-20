@@ -17,7 +17,7 @@ This document outlines the steps to configure and deploy Python Azure functions 
     - [Create a Container](#create-a-container)
         - [Upload config files to the Container](#upload-config-files-to-the-container)
     - [Create Function app](#create-function-app) 
-* [Create an Azure Cosmos Core (SQL) API serverless account, database and container using Azure CLI](#create-an-azure-cosmos-core-sql-api-serverless-account-database-and-container-using-azure-cli)
+* [Create an Azure Cosmos Core (SQL) API serverless account, database and container](#create-an-azure-cosmos-core-sql-api-serverless-account-database-and-container)
     - [Create cosmos DB account](#create-cosmos-db-account)
     - [Create an SQL database and container](#create-an-sql-database-and-container)
 * [Update Function App configuration settings](#update-function-app-configuration-settings)
@@ -211,7 +211,7 @@ Create **Function app** (say, `myfunctionApp`) in the created Resource group and
     </table>                                                
 
 
-## Create an Azure Cosmos Core (SQL) API serverless account, database and container using Azure CLI
+## Create an Azure Cosmos Core (SQL) API serverless account, database and container
 
 ### Create cosmos DB account
 <p align="left"><a href="#top">Back to Top</a></p>
