@@ -1,2 +1,2 @@
 asgiref==3.5.0
-Django==4.0.4
+Django==4.0.9
