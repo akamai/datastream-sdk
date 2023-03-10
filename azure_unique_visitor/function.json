@@ -1,0 +1,17 @@
+{
+    "scriptFile": "__init__.py",
+    "entryPoint": "main",
+    "bindings": [
+        {
+            "name": "request",
+            "type": "httpTrigger",
+            "direction": "in",
+            "methods": ["get", "post"]
+        },
+        {
+            "direction": "out",
+            "type": "http",
+            "name": "$return"
+        }
+    ]
+}

@@ -254,8 +254,8 @@ Create **cosmos DB account**
     </tbody>
     </table>
 
-6. Select **Review + create**.
-7. Review the account settings, and then select Create. It takes a few minutes to create the account. Wait for the portal page to display Your deployment is complete.
+5. Select **Review + create**.
+6. Review the account settings, and then select Create. It takes a few minutes to create the account. Wait for the portal page to display Your deployment is complete.
 
 ### Create an SQL database and container
 <p align="left"><a href="#top">Back to Top</a></p>
@@ -280,16 +280,24 @@ Create an **SQL database** under an Azure Cosmos DB account. Say,  `databaseName
     </tr>
     <tr align="left" valign="top">
         <th>Container id </th>
-        <td>Enter a unique name for the new container. <br> say, <code>cosmosContainerName</code></td>
+        <td>Enter a unique name for the new container. <br> say, <code>cosmosFirstContainerName</code></td>
     </tr>
     <tr align="left" valign="top">
         <th>Partition key </th>
         <td>can be left as it is as <code>/id</code> </td>
     </tr>
+     <tr align="left" valign="top">
+        <th>Container id </th>
+        <td>Enter a unique name for the new container. This container will store tha data that will be used for calculation of unique visitor <br> say, <code>cosmosSecondContainerName</code></td>
+    </tr>
+    <tr align="left" valign="top">
+        <th>Partition key </th>
+        <td> <code>/partition_key</code> </td>
+    </tr>
     </tbody>
     </table>
 
-6. Select OK. The Data Explorer displays the new database and the container that you created.
+3. Select OK. The Data Explorer displays the new database and the container that you created.
 
 
 ## Update Function App configuration settings
@@ -345,6 +353,26 @@ Bind Storage account and cosmos db account in the created Azure function
             <th> AzureCosmosDBConnectionString </th>
             <td> <code>cosmosDBConnectionString </code> </td>
             <td> Connection String used to connect to Cosmos DB to load the data</td>
+        </tr>
+        <tr align="left" valign="top">
+            <th> COSMOS_DB_ENDPOINT </th>
+            <td> <code>cosmosDBEndPoint </code> </td>
+            <td> CosmosDB end point used to connect to Cosmos DB to load the data</td>
+        </tr>
+        <tr align="left" valign="top">
+            <th> COSMOS_DB_PRIMARY_KEY </th>
+            <td> <code>cosmosDBPrimaryKey </code> </td>
+            <td> CosmosDB primaryKey used to connect to Cosmos DB to load the data</td>
+        </tr>
+        <tr align="left" valign="top">
+            <th> COSMOS_DATABASE_NAME </th>
+            <td> <code>cosmosDBName </code> </td>
+            <td> CosmosDB name used to connect to Cosmos DB to load the data</td>
+        </tr>
+        <tr align="left" valign="top">
+            <th> COSMOS_CONTAINER_NAME </th>
+            <td> <code>cosmosSecondContainerName </code> </td>
+            <td> cosmosSecondContainerName This container will store tha data that will be used for calculation of unique visitor</td>
         </tr>
         </tbody>
         </table>
