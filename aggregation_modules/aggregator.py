@@ -275,8 +275,11 @@ class Aggregator:
                     custom_functions.parse_user_agent(df_ctxt["ua"])
                 )
 
-            # all new custom defined functions can be invoked here
-
+            if function == "get_unique_visitor":
+                self.result.update(custom_functions.calc_unique_visitor(df_ctxt[
+                        ["ua", "cliip"]
+                    ]))
+        # all new custom defined functions can be invoked here
         return self.result
 
     def preprocess_dataframe(self):

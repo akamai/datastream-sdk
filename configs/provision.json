@@ -7,7 +7,8 @@
         "get_cachestatus",
         "get_offload_rate",
         "get_origin_response_time",
-        "get_user_agent_details"
+        "get_user_agent_details",
+        "get_unique_visitor"
     ],
     "dnslookuptimemsec": [
         "min",

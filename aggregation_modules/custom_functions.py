@@ -252,3 +252,19 @@ def parse_unique_count_for_column(column_df, column):
     """
 
     return {column: get_unique_counts_of_column(column_df)}
+
+
+def calc_unique_visitor(dfs):
+    """
+    returns total number of unique visitor     calculation should be done based on Client IP and UserAgent.
+    :param dfs:
+    :return: unique_visitors_value: [(user_agent, client_ip)]
+    """
+    result = {}
+    unique_visitors = set()
+    if dfs is not None:
+        for user_agent, client_ip in dfs.itertuples(index=False):
+            if (user_agent, client_ip) not in unique_visitors:
+                unique_visitors.add((user_agent, client_ip))
+        result["unique_visitors_value"] = list(unique_visitors)
+        return result

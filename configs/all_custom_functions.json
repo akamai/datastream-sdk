@@ -40,5 +40,12 @@
             "ua"
         ],
         "description": "Show User Agent details"
+    },
+    "get_unique_visitor": {
+         "required-fields": [
+             "ua",
+            "cliip"
+        ],
+        "description": "Show Unique visitors based on user agent and client ip"
     }
 }
