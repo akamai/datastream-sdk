@@ -408,6 +408,22 @@ The following are the details on the list of input configuration files used by t
                     </pre>
                 </td>
             </tr>
+   <tr align="left" valign="top">
+     <th> <i> get_unique_visitor(for Azure only) </i> </th>
+                <td> ua, cliip</td>
+                <td> > 2048 MB</td>
+                <td>
+                    <pre> 
+                     HTTP response code
+                     200 OK
+                      Example:-
+                      {
+                      "2023-02-22": 11,
+                      "2023-02-21": 6
+                      }
+                    </pre> 
+                </td>
+   </tr>
         </tbody>
     </table>
 
