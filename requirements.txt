@@ -2,12 +2,12 @@
 # The Python Worker is managed by Azure Functions platform
 # Manually managing azure-functions-worker may cause unexpected issues
 
-azure-functions
-httpagentparser
-numpy
-pandas
-python-dateutil
-pytz
-six
-azure-storage-blob
-azure-cosmos
+azure-functions==1.23.0
+httpagentparser==1.9.5
+numpy==2.2.6
+pandas==2.2.3
+python-dateutil==2.9.0.post0
+pytz==2025.2
+six==1.17.0
+azure-storage-blob==12.25.1
+azure-cosmos==4.9.0
