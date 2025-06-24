@@ -1,0 +1,33 @@
+name: Build and Publish input-monitor Docker Image
+
+on:
+  push:
+    paths:
+      - 'cloud_modules_linode/input-monitor/**'
+      - '.github/workflows/docker-publish.yml'
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Docker image
+        run: |
+          docker build -t ghcr.io/${{ github.repository }}/input-monitor:latest ./cloud_modules_linode/input-monitor
+
+      - name: Push Docker image
+        run: |
+          docker push ghcr.io/${{ github.repository }}/input-monitor:latest
+
