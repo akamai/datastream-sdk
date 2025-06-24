@@ -1,12 +1,7 @@
 name: Build and Publish input-monitor Docker Image
 
 on:
-  push:
-    paths:
-      - 'cloud_modules_linode/input-monitor/**'
-      - '.github/workflows/docker-publish.yml'
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   build-and-push:
