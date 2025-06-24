@@ -1,2 +1,2 @@
 inputMonitor:
-  image: input-monitor:latest
+  image: ghcr.io/mzupnik-a/datastream-sdk/input-monitor:latest
