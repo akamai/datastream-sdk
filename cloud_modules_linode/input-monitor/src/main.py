@@ -26,5 +26,6 @@ def main():
 
 if __name__ == "__main__":
     logger.info("Starting input monitor...")
+    logger.info("Config: %s", Config.__dict__)
     main()
     logger.info("Finished input monitor.")
