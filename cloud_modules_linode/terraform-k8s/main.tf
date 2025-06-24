@@ -85,6 +85,7 @@ resource "helm_release" "datastream_sdk" {
   chart               = "https://mzupnik-a.github.io/datastream-sdk/datastream-sdk-0.1.0.tgz"
   repository_username = var.github_username   // <-- Pass as a variable
   repository_password = var.github_token      // <-- Pass as a variable
+  namespace = kubernetes_namespace.tenant.metadata.0.name
 }
 
 variable "github_username" {
