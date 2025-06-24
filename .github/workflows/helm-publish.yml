@@ -1,12 +1,6 @@
 name: Build and Publish Helm Chart
 
 on:
-  push:
-    paths:
-      - 'cloud_modules_linode/datastream-sdk/**'
-      - '.github/workflows/helm-publish.yml'
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
@@ -22,7 +16,7 @@ jobs:
 
       - name: Package Helm chart
         run: |
-          helm package cloud_modules_linode/datastream-sdk
+          helm package cloud_modules_linode
           mkdir -p helm-charts
           mv datastream-sdk-*.tgz helm-charts/
 
