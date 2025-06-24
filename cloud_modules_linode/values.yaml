@@ -1,0 +1,2 @@
+inputMonitor:
+  image: input-monitor:latest

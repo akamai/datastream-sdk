@@ -8,3 +8,5 @@ __pycache__/
 local.settings.json
 ds_code-base.zip
 
+.terraform*
+.env

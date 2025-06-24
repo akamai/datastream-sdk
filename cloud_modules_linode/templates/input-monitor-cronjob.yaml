@@ -1,0 +1,63 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: input-monitor-cronjob
+spec:
+  schedule: "*/30 * * * *"
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: input-monitor-sa
+          containers:
+            - name: input-monitor
+              image: {{ .Values.inputMonitor.image }}
+              env:
+                - name: DATA_INPUT_STORAGE_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: data-input-storage-secret
+                      key: access_key
+                - name: DATA_INPUT_STORAGE_SECRET_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: data-input-storage-secret
+                      key: secret_key
+                - name: DATA_INPUT_STORAGE_NAME
+                  valueFrom:
+                    configMapKeyRef:
+                      name: storage-buckets-config
+                      key: data_input_storage
+                - name: DATA_INPUT_STORAGE_REGION
+                  valueFrom:
+                    configMapKeyRef:
+                      name: storage-buckets-config
+                      key: region
+                - name: MONITOR_STORAGE_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: monitor-storage-secret
+                      key: access_key
+                - name: MONITOR_STORAGE_SECRET_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: monitor-storage-secret
+                      key: secret_key
+                - name: MONITOR_STORAGE_NAME
+                  valueFrom:
+                    configMapKeyRef:
+                      name: storage-buckets-config
+                      key: monitor_storage
+                - name: MONITOR_STORAGE_REGION
+                  valueFrom:
+                    configMapKeyRef:
+                      name: storage-buckets-config
+                      key: region
+                - name: LEASE_NAME
+                  value: "input-monitor-lease"
+                - name: NAMESPACE
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.namespace
+          restartPolicy: OnFailure

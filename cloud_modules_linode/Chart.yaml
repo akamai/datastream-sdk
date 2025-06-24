@@ -1,0 +1,4 @@
+apiVersion: v2
+name: datastream-sdk
+description: Datastream SDK
+version: 0.1.0
