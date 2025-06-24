@@ -9,7 +9,6 @@ spec:
     spec:
       template:
         spec:
-          serviceAccountName: input-monitor-sa
           containers:
             - name: input-monitor
               image: {{ .Values.inputMonitor.image }}
