@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: input-monitor-cronjob
 spec:
-  schedule: "*/30 * * * *"
+  schedule: "* * * * *"
   concurrencyPolicy: Forbid
   jobTemplate:
     spec:

@@ -4,6 +4,10 @@ terraform {
       source  = "hashicorp/kubernetes"
       version = ">= 2.37.1"
     }
+    helm = {
+      source  = "hashicorp/helm"
+      version = ">= 3.0.2"
+    }
   }
 }
 
@@ -16,6 +20,12 @@ data "terraform_remote_state" "infra" {
 
 provider "kubernetes" {
   config_path = "${path.module}/../terraform-infra/kubeconfig-${data.terraform_remote_state.infra.outputs.tenant_id}.yaml"
+}
+
+provider "helm" {
+  kubernetes = {
+    config_path = "${path.module}/../terraform-infra/kubeconfig-${data.terraform_remote_state.infra.outputs.tenant_id}.yaml"
+  }
 }
 
 resource "kubernetes_namespace" "tenant" {
@@ -68,4 +78,22 @@ resource "kubernetes_config_map" "storage_buckets_config" {
     configuration_storage = data.terraform_remote_state.infra.outputs.configuration_storage_label
     region                = data.terraform_remote_state.infra.outputs.region
   }
+}
+
+resource "helm_release" "datastream_sdk" {
+  name                = "datastream-sdk"
+  chart               = "https://mzupnik-a.github.io/datastream-sdk/datastream-sdk-0.1.0.tgz"
+  repository_username = var.github_username   // <-- Pass as a variable
+  repository_password = var.github_token      // <-- Pass as a variable
+}
+
+variable "github_username" {
+  description = "GitHub username for accessing the GitHub Container or Pages registry"
+  type        = string
+}
+
+variable "github_token" {
+  description = "GitHub token with read:packages or repo access"
+  type        = string
+  sensitive   = true
 }
