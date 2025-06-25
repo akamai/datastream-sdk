@@ -81,11 +81,42 @@ resource "kubernetes_config_map" "storage_buckets_config" {
 }
 
 resource "helm_release" "datastream_sdk" {
-  name                = "datastream-sdk"
-  chart               = "https://mzupnik-a.github.io/datastream-sdk/datastream-sdk-0.1.0.tgz"
+  name      = "datastream-sdk"
+  chart     = "https://mzupnik-a.github.io/datastream-sdk/datastream-sdk-0.1.0.tgz"
   repository_username = var.github_username   // <-- Pass as a variable
   repository_password = var.github_token      // <-- Pass as a variable
   namespace = kubernetes_namespace.tenant.metadata.0.name
+}
+
+resource "kubernetes_config_map" "coredns_base" {
+  metadata {
+    name      = "coredns-base"
+    namespace = "kube-system"
+  }
+
+  data = {
+    Corefile = <<EOT
+.:53 {
+    errors
+    health {
+       lameduck 5s
+    }
+    ready
+    kubernetes cluster.local in-addr.arpa ip6.arpa {
+       pods insecure
+       fallthrough in-addr.arpa ip6.arpa
+       ttl 30
+    }
+    prometheus :9153
+    forward . 8.8.8.8 8.8.4.4
+    cache 30
+    loop
+    reload
+    loadbalance
+    import custom/*.include
+}
+EOT
+  }
 }
 
 variable "github_username" {

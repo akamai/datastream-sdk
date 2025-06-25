@@ -16,6 +16,11 @@ resource "linode_object_storage_bucket" "data_input_storage" {
   region = var.region
 }
 
+resource "linode_object_storage_bucket" "data_output_storage" {
+  label  = "data-input-storage-${var.tenant_id}"
+  region = var.region
+}
+
 resource "linode_object_storage_bucket" "monitor_storage" {
   label  = "monitor-storage-${var.tenant_id}"
   region = var.region
@@ -31,6 +36,15 @@ resource "linode_object_storage_key" "data_input_storage_key" {
   bucket_access {
     region      = linode_object_storage_bucket.data_input_storage.region
     bucket_name = linode_object_storage_bucket.data_input_storage.label
+    permissions = "read_write"
+  }
+}
+
+resource "linode_object_storage_key" "data_output_storage_key" {
+  label = "data-input-storage-key-${var.tenant_id}"
+  bucket_access {
+    region      = linode_object_storage_bucket.data_output_storage.region
+    bucket_name = linode_object_storage_bucket.data_output_storage.label
     permissions = "read_write"
   }
 }
@@ -51,13 +65,6 @@ resource "linode_object_storage_key" "configuration_storage_key" {
     bucket_name = linode_object_storage_bucket.configuration_storage.label
     permissions = "read_write"
   }
-}
-
-resource "linode_database_postgresql_v2" "postgresql" {
-  label     = "result-db-${var.tenant_id}"
-  engine_id = "postgresql/17"
-  region    = var.region
-  type      = "g6-nanode-1"
 }
 
 resource "linode_lke_cluster" "main" {
@@ -87,6 +94,16 @@ output "data_input_storage_secret_key" {
   sensitive = true
 }
 
+output "data_output_storage_access_key" {
+  value = linode_object_storage_key.data_output_storage_key.access_key
+  sensitive = true
+}
+
+output "data_output_storage_secret_key" {
+  value = linode_object_storage_key.data_output_storage_key.secret_key
+  sensitive = true
+}
+
 output "monitor_storage_access_key" {
   value = linode_object_storage_key.monitor_storage_key.access_key
   sensitive = true
@@ -109,6 +126,10 @@ output "configuration_storage_secret_key" {
 
 output "data_input_storage_label" {
   value = linode_object_storage_bucket.data_input_storage.label
+}
+
+output "data_output_storage_label" {
+  value = linode_object_storage_bucket.data_output_storage.label
 }
 
 output "monitor_storage_label" {
