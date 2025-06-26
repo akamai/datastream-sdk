@@ -37,18 +37,31 @@ resource "kubernetes_namespace" "tenant" {
 resource "kubernetes_secret" "data_input_storage" {
   metadata {
     name      = "data-input-storage-secret"
-    namespace = kubernetes_namespace.tenant.metadata.0.name
+    namespace = data.terraform_remote_state.infra.outputs.tenant_id
   }
   data = {
     access_key = data.terraform_remote_state.infra.outputs.data_input_storage_access_key
     secret_key = data.terraform_remote_state.infra.outputs.data_input_storage_secret_key
+    storage_name = data.terraform_remote_state.infra.outputs.data_input_storage_label
+    region = data.terraform_remote_state.infra.outputs.region
+  }
+}
+
+resource "kubernetes_secret" "data_output_storage" {
+  metadata {
+    name      = "data-output-storage-secret"
+    namespace = data.terraform_remote_state.infra.outputs.tenant_id
+  }
+  data = {
+    secret_key = data.terraform_remote_state.infra.outputs.data_output_storage_secret_key
+    access_key = data.terraform_remote_state.infra.outputs.data_output_storage_access_key
   }
 }
 
 resource "kubernetes_secret" "monitor_storage" {
   metadata {
     name      = "monitor-storage-secret"
-    namespace = kubernetes_namespace.tenant.metadata.0.name
+    namespace = data.terraform_remote_state.infra.outputs.tenant_id
   }
   data = {
     access_key = data.terraform_remote_state.infra.outputs.monitor_storage_access_key
@@ -59,7 +72,7 @@ resource "kubernetes_secret" "monitor_storage" {
 resource "kubernetes_secret" "configuration_storage" {
   metadata {
     name      = "configuration-storage-secret"
-    namespace = kubernetes_namespace.tenant.metadata.0.name
+    namespace = data.terraform_remote_state.infra.outputs.tenant_id
   }
   data = {
     access_key = data.terraform_remote_state.infra.outputs.configuration_storage_access_key
@@ -70,7 +83,7 @@ resource "kubernetes_secret" "configuration_storage" {
 resource "kubernetes_config_map" "storage_buckets_config" {
   metadata {
     name      = "storage-buckets-config"
-    namespace = kubernetes_namespace.tenant.metadata.0.name
+    namespace = data.terraform_remote_state.infra.outputs.tenant_id
   }
   data = {
     data_input_storage    = data.terraform_remote_state.infra.outputs.data_input_storage_label
@@ -85,38 +98,7 @@ resource "helm_release" "datastream_sdk" {
   chart     = "https://mzupnik-a.github.io/datastream-sdk/datastream-sdk-0.1.0.tgz"
   repository_username = var.github_username   // <-- Pass as a variable
   repository_password = var.github_token      // <-- Pass as a variable
-  namespace = kubernetes_namespace.tenant.metadata.0.name
-}
-
-resource "kubernetes_config_map" "coredns_base" {
-  metadata {
-    name      = "coredns-base"
-    namespace = "kube-system"
-  }
-
-  data = {
-    Corefile = <<EOT
-.:53 {
-    errors
-    health {
-       lameduck 5s
-    }
-    ready
-    kubernetes cluster.local in-addr.arpa ip6.arpa {
-       pods insecure
-       fallthrough in-addr.arpa ip6.arpa
-       ttl 30
-    }
-    prometheus :9153
-    forward . 8.8.8.8 8.8.4.4
-    cache 30
-    loop
-    reload
-    loadbalance
-    import custom/*.include
-}
-EOT
-  }
+  namespace = data.terraform_remote_state.infra.outputs.tenant_id
 }
 
 variable "github_username" {
