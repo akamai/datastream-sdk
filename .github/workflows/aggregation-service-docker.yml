@@ -1,0 +1,35 @@
+name: Build and Push Aggregation Service Docker Image
+
+on:
+  push:
+    paths:
+      - '../../cloud_modules_linode/aggregation-service/**'
+      - '.github/workflows/aggregation-service-docker.yml'
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Docker image
+        run: |
+          docker build -t ghcr.io/${{ github.repository_owner }}/datastream-sdk/aggregation-service:latest -f cloud_modules_linode/aggregation_service/Dockerfile .
+
+      - name: Push Docker image
+        run: |
+          docker push ghcr.io/${{ github.repository_owner }}/datastream-sdk/aggregation-service:latest
