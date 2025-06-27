@@ -107,6 +107,7 @@ class Aggregator:
         """
         Parent function to read all metadata/config files
         """
+        logger.info("read_metadata")
         self.read_all_datastream2_fields()
         self.read_all_custom_functions()
         self.read_stream_metadata()

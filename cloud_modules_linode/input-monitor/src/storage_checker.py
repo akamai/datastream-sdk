@@ -77,5 +77,7 @@ class StorageChecker:
 
             # Save the updated state as a list
             self._save_state(list(current_keys))
+            return new_keys
         except Exception as e:
             logger.error(f"Error checking objects: {e}")
+            return set()

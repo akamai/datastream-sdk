@@ -25,13 +25,13 @@ spec:
                       key: secret_key
                 - name: DATA_INPUT_STORAGE_NAME
                   valueFrom:
-                    configMapKeyRef:
-                      name: storage-buckets-config
-                      key: data_input_storage
+                    secretKeyRef:
+                      name: data-input-storage-secret
+                      key: storage_name
                 - name: DATA_INPUT_STORAGE_REGION
                   valueFrom:
-                    configMapKeyRef:
-                      name: storage-buckets-config
+                    secretKeyRef:
+                      name: data-input-storage-secret
                       key: region
                 - name: MONITOR_STORAGE_ACCESS_KEY
                   valueFrom:
@@ -45,12 +45,12 @@ spec:
                       key: secret_key
                 - name: MONITOR_STORAGE_NAME
                   valueFrom:
-                    configMapKeyRef:
-                      name: storage-buckets-config
-                      key: monitor_storage
+                    secretKeyRef:
+                      name: monitor-storage-secret
+                      key: storage_name
                 - name: MONITOR_STORAGE_REGION
                   valueFrom:
-                    configMapKeyRef:
-                      name: storage-buckets-config
+                    secretKeyRef:
+                      name: monitor-storage-secret
                       key: region
           restartPolicy: OnFailure

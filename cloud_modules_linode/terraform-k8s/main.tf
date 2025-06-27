@@ -40,10 +40,10 @@ resource "kubernetes_secret" "data_input_storage" {
     namespace = data.terraform_remote_state.infra.outputs.tenant_id
   }
   data = {
+    storage_name = data.terraform_remote_state.infra.outputs.data_input_storage_label
+    region = data.terraform_remote_state.infra.outputs.data_input_storage_region
     access_key = data.terraform_remote_state.infra.outputs.data_input_storage_access_key
     secret_key = data.terraform_remote_state.infra.outputs.data_input_storage_secret_key
-    storage_name = data.terraform_remote_state.infra.outputs.data_input_storage_label
-    region = data.terraform_remote_state.infra.outputs.region
   }
 }
 
@@ -53,6 +53,8 @@ resource "kubernetes_secret" "data_output_storage" {
     namespace = data.terraform_remote_state.infra.outputs.tenant_id
   }
   data = {
+    storage_name = data.terraform_remote_state.infra.outputs.data_output_storage_label
+    region = data.terraform_remote_state.infra.outputs.data_output_storage_region
     secret_key = data.terraform_remote_state.infra.outputs.data_output_storage_secret_key
     access_key = data.terraform_remote_state.infra.outputs.data_output_storage_access_key
   }
@@ -64,6 +66,8 @@ resource "kubernetes_secret" "monitor_storage" {
     namespace = data.terraform_remote_state.infra.outputs.tenant_id
   }
   data = {
+    storage_name = data.terraform_remote_state.infra.outputs.monitor_storage_label
+    region = data.terraform_remote_state.infra.outputs.monitor_storage_region
     access_key = data.terraform_remote_state.infra.outputs.monitor_storage_access_key
     secret_key = data.terraform_remote_state.infra.outputs.monitor_storage_secret_key
   }
@@ -71,25 +75,14 @@ resource "kubernetes_secret" "monitor_storage" {
 
 resource "kubernetes_secret" "configuration_storage" {
   metadata {
-    name      = "configuration-storage-secret"
+    name = "configuration-storage-secret"
     namespace = data.terraform_remote_state.infra.outputs.tenant_id
   }
   data = {
+    storage_name = data.terraform_remote_state.infra.outputs.configuration_storage_label
+    region = data.terraform_remote_state.infra.outputs.configuration_storage_region
     access_key = data.terraform_remote_state.infra.outputs.configuration_storage_access_key
     secret_key = data.terraform_remote_state.infra.outputs.configuration_storage_secret_key
-  }
-}
-
-resource "kubernetes_config_map" "storage_buckets_config" {
-  metadata {
-    name      = "storage-buckets-config"
-    namespace = data.terraform_remote_state.infra.outputs.tenant_id
-  }
-  data = {
-    data_input_storage    = data.terraform_remote_state.infra.outputs.data_input_storage_label
-    monitor_storage       = data.terraform_remote_state.infra.outputs.monitor_storage_label
-    configuration_storage = data.terraform_remote_state.infra.outputs.configuration_storage_label
-    region                = data.terraform_remote_state.infra.outputs.region
   }
 }
 

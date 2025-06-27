@@ -95,10 +95,13 @@ class AWSStorageContainer(BaseUtils):
         reads json_file from s3 storage
         and return dict object
         """
+        logger.info(f"read_json_metadata_from_s3: {json_file}")
         try:
 
             if self.metadata_path is not None:
                 json_file_path = self.metadata_path + "/" + json_file
+
+            logger.info("reading json file, metadata_path: %s", self.metadata_path)
 
             json_buffer = self.read_from_s3(
                 self.metadata_bucket, json_file_path)

@@ -1,2 +1,5 @@
 inputMonitor:
   image: ghcr.io/mzupnik-a/datastream-sdk/input-monitor:latest
+
+aggregationService:
+  image: ghcr.io/mzupnik-a/datastream-sdk/aggregation-service:latest

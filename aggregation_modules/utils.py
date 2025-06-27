@@ -85,6 +85,7 @@ class BaseUtils:
         """
         Parse a JSON file and returns dict
         """
+        logger.info("read_json_file_to_dict: %s", file_to_read)
         try:
             with io.open(file_to_read, "rb") as json_file_reader:
                 return self.get_dict_from_json(json_file_reader)

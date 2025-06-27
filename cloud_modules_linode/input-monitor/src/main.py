@@ -1,5 +1,8 @@
 import logging
+import os
 import sys
+
+import requests
 
 from config import Config
 from storage_checker import StorageChecker
@@ -7,6 +10,20 @@ from storage_checker import StorageChecker
 logging.basicConfig(level=logging.INFO, stream=sys.stdout)
 
 logger = logging.getLogger(__name__)
+
+
+def notify_aggregation_service(new_files):
+    if not new_files:
+        logger.info("No new files to notify.")
+        return
+    url = os.getenv("AGGREGATION_SERVICE_URL", "http://aggregation-service:8000/notify-files")
+    try:
+        logger.info(f"Notifying aggregation service at {url} with files: {new_files}")
+        resp = requests.post(url, json={"files": list(new_files)})
+        resp.raise_for_status()
+        logger.info(f"Aggregation service response: {resp.status_code} {resp.text}")
+    except Exception as e:
+        logger.error(f"Failed to notify aggregation service: {e}")
 
 
 def main():
@@ -21,7 +38,8 @@ def main():
         Config.MONITOR_STORAGE_NAME,
     )
 
-    checker.check_new_objects()
+    new_files = checker.check_new_objects()
+    notify_aggregation_service(new_files)
 
 
 if __name__ == "__main__":

@@ -84,90 +84,77 @@ resource "local_file" "kubeconfig" {
   content = base64decode(linode_lke_cluster.main.kubeconfig)
 }
 
+output "lke_cluster_region" {
+  value = linode_lke_cluster.main.region
+  sensitive = false
+}
+
+output "data_input_storage_label" {
+  value = linode_object_storage_bucket.data_input_storage.label
+  sensitive = false
+}
+output "data_input_storage_region" {
+  value = linode_object_storage_bucket.data_input_storage.region
+  sensitive = false
+}
 output "data_input_storage_access_key" {
   value = linode_object_storage_key.data_input_storage_key.access_key
   sensitive = true
 }
-
 output "data_input_storage_secret_key" {
   value = linode_object_storage_key.data_input_storage_key.secret_key
   sensitive = true
 }
 
-output "data_input_storage_region" {
-  value = linode_object_storage_bucket.data_input_storage.region
+output "data_output_storage_label" {
+  value = linode_object_storage_bucket.data_output_storage.label
   sensitive = false
 }
-
-output "data_input_storage_name" {
-  value = linode_object_storage_bucket.data_input_storage.label
+output "data_output_storage_region" {
+  value = linode_object_storage_bucket.data_output_storage.region
   sensitive = false
 }
-
 output "data_output_storage_access_key" {
   value = linode_object_storage_key.data_output_storage_key.access_key
   sensitive = true
 }
-
 output "data_output_storage_secret_key" {
   value = linode_object_storage_key.data_output_storage_key.secret_key
   sensitive = true
 }
 
-output "data_output_storage_region" {
-  value = linode_object_storage_bucket.data_output_storage.region
+output "monitor_storage_label" {
+  value = linode_object_storage_bucket.monitor_storage.label
   sensitive = false
 }
-
-output "data_output_storage_name" {
-  value = linode_object_storage_bucket.data_output_storage.label
+output "monitor_storage_region" {
+  value = linode_object_storage_bucket.monitor_storage.region
   sensitive = false
 }
-
 output "monitor_storage_access_key" {
   value = linode_object_storage_key.monitor_storage_key.access_key
   sensitive = true
 }
-
 output "monitor_storage_secret_key" {
   value = linode_object_storage_key.monitor_storage_key.secret_key
   sensitive = true
 }
 
-output "monitor_storage_region" {
-  value = linode_object_storage_bucket.monitor_storage.region
+output "configuration_storage_label" {
+  value = linode_object_storage_bucket.configuration_storage.label
   sensitive = false
 }
-
-output "monitor_storage_name" {
-  value = linode_object_storage_bucket.monitor_storage.label
+output "configuration_storage_region" {
+  value = linode_object_storage_bucket.configuration_storage.region
   sensitive = false
 }
-
 output "configuration_storage_access_key" {
   value = linode_object_storage_key.configuration_storage_key.access_key
   sensitive = true
 }
-
 output "configuration_storage_secret_key" {
   value = linode_object_storage_key.configuration_storage_key.secret_key
   sensitive = true
-}
-
-output "data_input_storage_label" {
-  value = linode_object_storage_bucket.data_input_storage.label
-}
-
-output "data_output_storage_label" {
-  value = linode_object_storage_bucket.data_output_storage.label
-}
-
-output "monitor_storage_label" {
-  value = linode_object_storage_bucket.monitor_storage.label
-}
-
-output "configuration_storage_label" {
-  value = linode_object_storage_bucket.configuration_storage.label
 }
 
 output "tenant_id" {
