@@ -2,7 +2,7 @@ FROM python:3.13-slim
 
 WORKDIR /app
 
-COPY cloud_modules_linode/aggregation_service/requirements.txt ./
+COPY cloud_modules_linode/aggregation-service/requirements.txt ./
 COPY requirements.txt ./base-requirements.txt
 COPY cloud_modules_aws/requirements.txt ./aws-requirements.txt
 
@@ -12,7 +12,7 @@ RUN pip install --no-cache-dir -r aws-requirements.txt
 
 COPY aggregation_modules ./aggregation_modules/
 COPY cloud_modules_aws ./cloud_modules_aws/
-COPY cloud_modules_linode/aggregation_service/src/* ./
+COPY cloud_modules_linode/aggregation-service/src/* ./
 
 ENV PYTHONPATH=/app
 
