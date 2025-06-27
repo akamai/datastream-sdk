@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aggregation-service
+  labels:
+    app: aggregation-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: aggregation-service
+  template:
+    metadata:
+      labels:
+        app: aggregation-service
+    spec:
+      containers:
+        - name: aggregation-service
+          image: "{{ .Values.aggregationService.image }}"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: DATA_INPUT_STORAGE_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: data-input-storage-secret
+                  key: access_key
+            - name: DATA_INPUT_STORAGE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: data-input-storage-secret
+                  key: secret_key
+            - name: DATA_INPUT_STORAGE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: data-input-storage-secret
+                  key: storage_name
+            - name: DATA_INPUT_STORAGE_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: data-input-storage-secret
+                  key: region
+            - name: DATA_OUTPUT_STORAGE_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: data-output-storage-secret
+                  key: access_key
+            - name: DATA_OUTPUT_STORAGE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: data-output-storage-secret
+                  key: secret_key
+            - name: DATA_OUTPUT_STORAGE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: data-output-storage-secret
+                  key: storage_name
+            - name: DATA_OUTPUT_STORAGE_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: data-output-storage-secret
+                  key: region
+            - name: CONFIG_STORAGE_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: config-storage-secret
+                  key: access_key
+            - name: CONFIG_STORAGE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: config-storage-secret
+                  key: secret_key
+            - name: CONFIG_STORAGE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: config-storage-secret
+                  key: storage_name
+            - name: CONFIG_STORAGE_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: config-storage-secret
+                  key: region
+          ports:
+            - containerPort: 8000
+          resources:
+            {{- toYaml .Values.aggregationService.resources | nindent 12 }}
+          volumeMounts:
+            - name: config-volume
+              mountPath: /app/configs
+      volumes:
+        - name: config-volume
+          configMap:
+            name: aggregation-service-config
