@@ -81,12 +81,3 @@ spec:
                   key: region
           ports:
             - containerPort: 8000
-          resources:
-            {{- toYaml .Values.aggregationService.resources | nindent 12 }}
-          volumeMounts:
-            - name: config-volume
-              mountPath: /app/configs
-      volumes:
-        - name: config-volume
-          configMap:
-            name: aggregation-service-config
