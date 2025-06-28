@@ -62,22 +62,22 @@ spec:
             - name: CONFIG_STORAGE_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: config-storage-secret
+                  name: configuration-storage-secret
                   key: access_key
             - name: CONFIG_STORAGE_SECRET_KEY
               valueFrom:
                 secretKeyRef:
-                  name: config-storage-secret
+                  name: configuration-storage-secret
                   key: secret_key
             - name: CONFIG_STORAGE_NAME
               valueFrom:
                 secretKeyRef:
-                  name: config-storage-secret
+                  name: configuration-storage-secret
                   key: storage_name
             - name: CONFIG_STORAGE_REGION
               valueFrom:
                 secretKeyRef:
-                  name: config-storage-secret
+                  name: configuration-storage-secret
                   key: region
           ports:
             - containerPort: 8000
