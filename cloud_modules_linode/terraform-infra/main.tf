@@ -44,19 +44,11 @@ terraform {
       source  = "linode/linode"
       version = ">=3.0.0"
     }
-    kubernetes = {
-      source  = "hashicorp/kubernetes"
-      version = ">= 2.37.1"
-    }
   }
 }
 
 provider "linode" {
   token = var.linode_api_token
-}
-
-provider "kubernetes" {
-  config_path = "${path.module}/kubeconfig-${var.tenant_id}.yaml"
 }
 
 resource "linode_object_storage_bucket" "data_input_storage" {
@@ -119,7 +111,7 @@ resource "linode_object_storage_key" "configuration_storage_key" {
   }
 }
 
-resource "linode_lke_cluster" "main" {
+resource "linode_lke_cluster" "datastream_lke_cluster" {
   label       = "datastream-lke-cluster-${var.tenant_id}"
   region      = var.lke_cluster_region
   k8s_version = "1.33"
@@ -131,74 +123,51 @@ resource "linode_lke_cluster" "main" {
 }
 
 resource "local_file" "kubeconfig" {
-  depends_on = [linode_lke_cluster.main]
+  depends_on = [linode_lke_cluster.datastream_lke_cluster]
   filename = "${path.module}/kubeconfig-${var.tenant_id}.yaml"
-  content = base64decode(linode_lke_cluster.main.kubeconfig)
+  content = base64decode(linode_lke_cluster.datastream_lke_cluster.kubeconfig)
 }
 
-resource "kubernetes_namespace" "tenant" {
-  depends_on = [local_file.kubeconfig]
-  metadata {
-    name = var.tenant_id
-  }
+output "tenant_id" {
+  value = var.tenant_id
 }
 
-resource "kubernetes_secret" "data_input_storage" {
-  depends_on = [linode_object_storage_key.data_input_storage_key, local_file.kubeconfig]
-  metadata {
-    name      = "data-input-storage-secret"
-    namespace = var.tenant_id
-  }
-  data = {
+output "data_input_storage_secret" {
+  value = {
     storage_name = linode_object_storage_bucket.data_input_storage.label
     region       = linode_object_storage_bucket.data_input_storage.region
     access_key   = linode_object_storage_key.data_input_storage_key.access_key
     secret_key   = linode_object_storage_key.data_input_storage_key.secret_key
   }
+  sensitive = true
 }
 
-resource "kubernetes_secret" "data_output_storage" {
-  depends_on = [linode_object_storage_key.data_output_storage_key, local_file.kubeconfig]
-  metadata {
-    name      = "data-output-storage-secret"
-    namespace = var.tenant_id
-  }
-  data = {
+output "data_output_storage_secret" {
+  value = {
     storage_name = linode_object_storage_bucket.data_output_storage.label
     region       = linode_object_storage_bucket.data_output_storage.region
     access_key   = linode_object_storage_key.data_output_storage_key.access_key
     secret_key   = linode_object_storage_key.data_output_storage_key.secret_key
   }
+  sensitive = true
 }
 
-resource "kubernetes_secret" "monitor_storage" {
-  depends_on = [linode_object_storage_key.monitor_storage_key, local_file.kubeconfig]
-  metadata {
-    name      = "monitor-storage-secret"
-    namespace = var.tenant_id
-  }
-  data = {
+output "monitor_storage_secret" {
+  value = {
     storage_name = linode_object_storage_bucket.monitor_storage.label
     region       = linode_object_storage_bucket.monitor_storage.region
     access_key   = linode_object_storage_key.monitor_storage_key.access_key
     secret_key   = linode_object_storage_key.monitor_storage_key.secret_key
   }
+  sensitive = true
 }
 
-resource "kubernetes_secret" "configuration_storage" {
-  depends_on = [linode_object_storage_key.configuration_storage_key, local_file.kubeconfig]
-  metadata {
-    name      = "configuration-storage-secret"
-    namespace = var.tenant_id
-  }
-  data = {
+output "configuration_storage_secret" {
+  value = {
     storage_name = linode_object_storage_bucket.configuration_storage.label
     region       = linode_object_storage_bucket.configuration_storage.region
     access_key   = linode_object_storage_key.configuration_storage_key.access_key
     secret_key   = linode_object_storage_key.configuration_storage_key.secret_key
   }
-}
-
-output "tenant_id" {
-  value = var.tenant_id
+  sensitive = true
 }
