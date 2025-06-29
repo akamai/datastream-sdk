@@ -16,8 +16,13 @@ COPY cloud_modules_linode/aggregation-service/src/* ./
 
 ENV PYTHONPATH=/app
 
+RUN groupadd -r appuser && useradd -r -g appuser appuser
+
 RUN mkdir -p /app/configs && chmod 700 /app/configs
+RUN chown -R appuser:appuser /app
 
 EXPOSE 8000
+
+USER appuser
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
