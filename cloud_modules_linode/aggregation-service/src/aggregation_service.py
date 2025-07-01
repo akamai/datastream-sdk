@@ -3,6 +3,7 @@ import logging
 import os
 
 import boto3
+from botocore.exceptions import ClientError
 
 from aggregation_modules.aggregator import Aggregator
 from config import Config
@@ -44,14 +45,18 @@ class AggregationService:
             aws_secret_access_key=secret_key
         )
 
-    def _download_file(self, filename: str) -> str:
+    def _download_file(self, filename: str):
         logger.info(f"Downloading file {filename}")
         s3 = self._get_s3_client("input")
         bucket = Config.DATA_INPUT_STORAGE_NAME
         dst = os.path.join("/tmp", filename)
-        s3.download_file(bucket, filename, dst)
-        logger.info(f"Downloaded file {filename} to {dst}")
-        return dst
+        try:
+            s3.download_file(bucket, filename, dst)
+            logger.info(f"Downloaded file {filename} to {dst}")
+            return dst
+        except ClientError as e:
+            logger.error(f"Error downloading file {filename}: {e}")
+            return None
 
     def _upload_file(self, local_path: str, filename: str):
         logger.info(f"Uploading file {filename}")
@@ -61,18 +66,24 @@ class AggregationService:
         bucket = Config.DATA_OUTPUT_STORAGE_NAME
         logger.info(f"Uploading file {filename} (local_path: {local_path}) to {bucket}")
         logger.info(f"File size: {os.path.getsize(local_path)} bytes")
-        s3.upload_file(local_path, bucket, filename)
-        logger.info(f"Uploaded file {filename} to bucket {bucket}")
+        try:
+            s3.upload_file(local_path, bucket, filename)
+            logger.info(f"Uploaded file {filename} to bucket {bucket}")
+        except ClientError as e:
+            logger.error(f"Error uploading file {filename} to {bucket}: {e}")
 
     def _remove_input_file(self, filename: str):
-        logger.info(f"Removing input file {filename}")
+        logger.info(f"Removing input file {filename}...")
         s3 = self._get_s3_client("input")
         bucket = Config.DATA_INPUT_STORAGE_NAME
-        s3.delete_object(Bucket=bucket, Key=filename)
-        logger.info(f"Removed input file {filename} from bucket {bucket}")
+        try:
+            s3.delete_object(Bucket=bucket, Key=filename)
+            logger.info(f"Removed input file {filename} from bucket {bucket}")
+        except ClientError as e:
+            logger.error(f"Error deleting file {filename}: {e}")
 
     @staticmethod
-    def _execute_aggregation(input_path: str, output_path: str, cloud: str = None):
+    def _execute_aggregation(input_path: str, output_path: str):
         obj = Aggregator(cloud_provider=None)
         obj.read_metadata()
         obj.read_input_data(input_file=input_path, bucket_name=None)
@@ -83,13 +94,14 @@ class AggregationService:
     def process_file(self, filename: str):
         try:
             local_input = self._download_file(filename)
-            local_output = f"/tmp/aggregated_{filename}"
-            self._download_configs()
-            self._execute_aggregation(local_input, local_output)
-            self._upload_file(local_output, f"aggregated_{filename}")
-            self._remove_input_file(filename)
-            os.remove(local_input)
-            os.remove(local_output)
+            if local_input:
+                local_output = f"/tmp/aggregated_{filename}"
+                self._download_configs()
+                self._execute_aggregation(local_input, local_output)
+                self._upload_file(local_output, f"aggregated_{filename}")
+                self._remove_input_file(filename)
+                os.remove(local_input)
+                os.remove(local_output)
         except Exception as e:
             logger.error(f"Error processing file: {filename}, Error: {e}")
             raise e

@@ -11,31 +11,31 @@ variable "tenant_id" {
 variable "input_storage_region" {
   description = "Region for Input Storage"
   type        = string
-  default     = "us-east"
+  default     = "us-ord"
 }
 
 variable "output_storage_region" {
   description = "Region for Output Storage"
   type        = string
-  default     = "us-east"
+  default     = "us-ord"
 }
 
 variable "config_storage_region" {
   description = "Region for Configuration Storage"
   type        = string
-  default     = "us-east"
+  default     = "us-ord"
 }
 
 variable "monitor_storage_region" {
   description = "Region for Monitor Storage"
   type        = string
-  default     = "us-east"
+  default     = "us-ord"
 }
 
 variable "lke_cluster_region" {
   description = "Region for LKE Cluster"
   type        = string
-  default     = "us-east"
+  default     = "us-ord"
 }
 
 terraform {
