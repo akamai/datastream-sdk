@@ -61,7 +61,7 @@ class AggregationService:
         bucket = Config.DATA_OUTPUT_STORAGE_NAME
         logger.info(f"Uploading file {filename} (local_path: {local_path}) to {bucket}")
         logger.info(f"File size: {os.path.getsize(local_path)} bytes")
-        s3.upload_file(local_path, bucket, filename, ExtraArgs={"ContentType": "binary/octet-stream"})
+        s3.upload_file(local_path, bucket, filename)
         logger.info(f"Uploaded file {filename} to bucket {bucket}")
 
     def _remove_input_file(self, filename: str):
