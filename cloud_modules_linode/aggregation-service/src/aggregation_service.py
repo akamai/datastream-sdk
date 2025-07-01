@@ -41,7 +41,6 @@ class AggregationService:
         endpoint_url = f"https://{aws_compatible_region}.linodeobjects.com"
 
         boto_config = BotoConfig(
-            s3={'use_accelerate_endpoint': False},
             signature_version='s3v4'
         )
 
@@ -71,8 +70,8 @@ class AggregationService:
         logger.info(f"Uploading file {filename}")
         boto3.set_stream_logger('botocore', level=logging.DEBUG)
 
-        s3 = self._get_s3_client("output")
-        bucket = Config.DATA_OUTPUT_STORAGE_NAME
+        s3 = self._get_s3_client("input") # temporary change to input
+        bucket = Config.DATA_INPUT_STORAGE_NAME
         logger.info(f"Uploading file {filename} (local_path: {local_path}) to {bucket}")
         logger.info(f"File size: {os.path.getsize(local_path)} bytes")
 
