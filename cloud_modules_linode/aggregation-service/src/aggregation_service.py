@@ -4,6 +4,7 @@ import os
 
 import boto3
 from botocore.exceptions import ClientError
+from botocore.config import Config
 
 from aggregation_modules.aggregator import Aggregator
 from config import Config
@@ -37,12 +38,15 @@ class AggregationService:
         if service not in config_map:
             raise ValueError("Unknown service type")
         region, access_key, secret_key = config_map[service]
-        endpoint_url = f"https://{region}-1.linodeobjects.com"
+        aws_compatible_region = f"{region}-1"
+        endpoint_url = f"https://{aws_compatible_region}.linodeobjects.com"
         return boto3.client(
             's3',
+            region_name=aws_compatible_region,
             endpoint_url=endpoint_url,
             aws_access_key_id=access_key,
-            aws_secret_access_key=secret_key
+            aws_secret_access_key=secret_key,
+            config=Config(use_accelerate_endpoint=False)
         )
 
     def _download_file(self, filename: str):
