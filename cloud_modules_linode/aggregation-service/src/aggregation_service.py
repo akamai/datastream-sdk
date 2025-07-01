@@ -3,6 +3,7 @@ import logging
 import os
 
 import boto3
+from boto3.s3.transfer import TransferConfig
 from botocore.exceptions import ClientError
 from botocore.config import Config
 
@@ -40,13 +41,13 @@ class AggregationService:
         region, access_key, secret_key = config_map[service]
         aws_compatible_region = f"{region}-1"
         endpoint_url = f"https://{aws_compatible_region}.linodeobjects.com"
+
         return boto3.client(
             's3',
             region_name=aws_compatible_region,
             endpoint_url=endpoint_url,
             aws_access_key_id=access_key,
             aws_secret_access_key=secret_key,
-            config=Config(use_accelerate_endpoint=False)
         )
 
     def _download_file(self, filename: str):
@@ -70,8 +71,12 @@ class AggregationService:
         bucket = Config.DATA_OUTPUT_STORAGE_NAME
         logger.info(f"Uploading file {filename} (local_path: {local_path}) to {bucket}")
         logger.info(f"File size: {os.path.getsize(local_path)} bytes")
+
+        GB = 1024 ** 3
+        config = TransferConfig(multipart_threshold=5*GB)
+
         try:
-            s3.upload_file(local_path, bucket, filename)
+            s3.upload_file(local_path, bucket, filename, Config=config)
             logger.info(f"Uploaded file {filename} to bucket {bucket}")
         except ClientError as e:
             logger.error(f"Error uploading file {filename} to {bucket}: {e}")
