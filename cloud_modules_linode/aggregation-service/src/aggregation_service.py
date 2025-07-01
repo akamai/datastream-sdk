@@ -3,9 +3,6 @@ import logging
 import os
 
 import boto3
-from boto3.s3.transfer import TransferConfig
-from botocore.exceptions import ClientError
-from botocore.config import Config
 
 from aggregation_modules.aggregator import Aggregator
 from config import Config
@@ -59,7 +56,7 @@ class AggregationService:
             s3.download_file(bucket, filename, dst)
             logger.info(f"Downloaded file {filename} to {dst}")
             return dst
-        except ClientError as e:
+        except Exception as e:
             logger.error(f"Error downloading file {filename}: {e}")
             return None
 
@@ -72,13 +69,20 @@ class AggregationService:
         logger.info(f"Uploading file {filename} (local_path: {local_path}) to {bucket}")
         logger.info(f"File size: {os.path.getsize(local_path)} bytes")
 
-        GB = 1024 ** 3
-        config = TransferConfig(multipart_threshold=5*GB)
+        extra_args = {
+            'ContentEncoding': 'gzip',
+            'ContentType': 'text/plain'
+        }
 
         try:
-            s3.upload_file(local_path, bucket, filename, Config=config)
+            s3.upload_file(
+                Filename=local_path,
+                Bucket=bucket,
+                Key=filename,
+                ExtraArgs=extra_args
+            )
             logger.info(f"Uploaded file {filename} to bucket {bucket}")
-        except ClientError as e:
+        except Exception as e:
             logger.error(f"Error uploading file {filename} to {bucket}: {e}")
 
     def _remove_input_file(self, filename: str):
@@ -88,7 +92,7 @@ class AggregationService:
         try:
             s3.delete_object(Bucket=bucket, Key=filename)
             logger.info(f"Removed input file {filename} from bucket {bucket}")
-        except ClientError as e:
+        except Exception as e:
             logger.error(f"Error deleting file {filename}: {e}")
 
     @staticmethod
