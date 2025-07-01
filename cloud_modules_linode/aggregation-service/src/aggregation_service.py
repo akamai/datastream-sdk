@@ -69,21 +69,19 @@ class AggregationService:
         logger.info(f"Uploading file {filename} (local_path: {local_path}) to {bucket}")
         logger.info(f"File size: {os.path.getsize(local_path)} bytes")
 
-        extra_args = {
-            'ContentEncoding': 'gzip',
-            'ContentType': 'text/plain'
-        }
-
         try:
-            s3.upload_file(
-                Filename=local_path,
-                Bucket=bucket,
-                Key=filename,
-                ExtraArgs=extra_args
-            )
+            with open(local_path, 'rb') as f:
+                s3.put_object(
+                    Bucket=bucket,
+                    Key=filename,
+                    Body=f,
+                    ContentEncoding='gzip',
+                    ContentType='text/plain'
+                )
             logger.info(f"Uploaded file {filename} to bucket {bucket}")
         except Exception as e:
             logger.error(f"Error uploading file {filename} to {bucket}: {e}")
+            raise e
 
     def _remove_input_file(self, filename: str):
         logger.info(f"Removing input file {filename}...")
