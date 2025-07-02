@@ -70,8 +70,8 @@ class AggregationService:
         logger.info(f"Uploading file {filename}")
         boto3.set_stream_logger('botocore', level=logging.DEBUG)
 
-        s3 = self._get_s3_client("input") # temporary change to input
-        bucket = Config.DATA_INPUT_STORAGE_NAME
+        s3 = self._get_s3_client("output")
+        bucket = Config.DATA_OUTPUT_STORAGE_NAME
         logger.info(f"Uploading file {filename} (local_path: {local_path}) to {bucket}")
         logger.info(f"File size: {os.path.getsize(local_path)} bytes")
 
@@ -105,6 +105,7 @@ class AggregationService:
         obj.read_metadata()
         obj.read_input_data(input_file=input_path, bucket_name=None)
         obj.process_data()
+        logger.info(f"Aggregated result: {obj.result_map}")
         with open(output_path, "w") as f:
             json.dump(obj.result_map, f, indent=2)
 
@@ -115,7 +116,7 @@ class AggregationService:
                 local_output = f"/tmp/aggregated_{filename}"
                 self._download_configs()
                 self._execute_aggregation(local_input, local_output)
-                self._upload_file(local_output, f"aggregated_{filename}")
+                # self._upload_file(local_output, f"aggregated_{filename}")
                 self._remove_input_file(filename)
                 os.remove(local_input)
                 os.remove(local_output)
