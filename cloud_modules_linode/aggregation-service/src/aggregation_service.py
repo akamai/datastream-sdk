@@ -105,9 +105,11 @@ class AggregationService:
         obj.read_metadata()
         obj.read_input_data(input_file=input_path, bucket_name=None)
         obj.process_data()
-        logger.info(f"Aggregated result: {obj.result_map}")
+        logger.info(f"Aggregated result:\n{json.dumps(obj.result_map, indent=2)}")
+
         with open(output_path, "w") as f:
             json.dump(obj.result_map, f, indent=2)
+
 
     def process_file(self, filename: str):
         try:
@@ -116,7 +118,7 @@ class AggregationService:
                 local_output = f"/tmp/aggregated_{filename}"
                 self._download_configs()
                 self._execute_aggregation(local_input, local_output)
-                # self._upload_file(local_output, f"aggregated_{filename}")
+                self._upload_file(local_output, f"aggregated_{filename}")
                 self._remove_input_file(filename)
                 os.remove(local_input)
                 os.remove(local_output)
