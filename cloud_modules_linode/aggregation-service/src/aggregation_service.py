@@ -123,7 +123,7 @@ class AggregationService:
                 local_output = f"/tmp/aggregated_{filename}"
                 self._download_configs()
                 self._execute_aggregation(local_input, local_output)
-                self._upload_file(local_output, f"aggregated_{filename}")
+                # self._upload_file(local_output, f"aggregated_{filename}")
                 self._remove_input_file(filename)
                 os.remove(local_input)
                 os.remove(local_output)
