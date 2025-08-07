@@ -77,12 +77,17 @@ class AggregationService:
 
         try:
             with open(local_path, 'rb') as f:
-                s3.put_object(
-                    Bucket=bucket,
-                    Key=filename,
-                    Body=f,
-                    ContentEncoding='gzip',
-                    ContentType='text/plain'
+                extra_args = {
+                    "ContentType": "text/plain"
+                }
+                # Only set ContentEncoding if file is gzipped
+                if filename.endswith('.gz'):
+                    extra_args["ContentEncoding"] = "gzip"
+                s3.upload_fileobj(
+                    f,
+                    bucket,
+                    filename,
+                    ExtraArgs=extra_args
                 )
             logger.info(f"Uploaded file {filename} to bucket {bucket}")
         except Exception as e:
