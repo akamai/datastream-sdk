@@ -103,7 +103,7 @@ resource "helm_release" "datastream_sdk" {
     kubernetes_secret.monitor_storage, kubernetes_secret.configuration_storage
   ]
   name      = "datastream-sdk"
-  chart     = "https://mzupnik-a.github.io/datastream-sdk/datastream-sdk-0.1.0.tgz"
+  chart     = "https://mzupnik-a.github.io/datastream-sdk/datastream-sdk-0.1.1.tgz"
   repository_username = var.github_username
   repository_password = var.github_token
   namespace = data.terraform_remote_state.infra.outputs.tenant_id
