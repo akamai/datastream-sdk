@@ -1,2 +1,2 @@
-asgiref==3.8.1
-Django==5.2.1
+asgiref==3.10.0
+Django==5.2.7
