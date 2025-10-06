@@ -5,9 +5,9 @@
 azure-functions==1.23.0
 httpagentparser==1.9.5
 numpy==2.2.6
-pandas==2.2.3
+pandas==2.3.3
 python-dateutil==2.9.0.post0
 pytz==2025.2
 six==1.17.0
-azure-storage-blob==12.25.1
+azure-storage-blob==12.26.0
 azure-cosmos==4.9.0
